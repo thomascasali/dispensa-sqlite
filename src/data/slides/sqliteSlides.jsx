@@ -156,9 +156,66 @@ export const sqliteSlides = [
     )
   },
 
-  // Slide 18 - Vincoli e Chiavi
+  // Slide 7 - Primo Database
   {
-    id: 12,
+    id: 7,
+    title: "Primo Database",
+    category: "sqlite",
+    content: (
+      <div className="space-y-6">
+        <div className="text-center">
+          <Database size={64} className="text-green-400 mb-4 mx-auto" />
+          <h2 className="text-3xl font-bold text-green-300 mb-4">Il Primo Database</h2>
+          <p className="text-gray-400">Creiamo insieme il nostro primo database</p>
+        </div>
+
+        <div className="bg-gradient-to-br from-blue-900/50 to-indigo-900/50 p-6 rounded-lg border border-blue-700">
+          <h3 className="text-xl font-semibold text-blue-300 mb-4">🚀 Primi Passi</h3>
+          <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+            <code className="text-green-400 text-sm">
+              $ sqlite3 biblioteca.db<br/>
+              SQLite version 3.x.x<br/>
+              Enter ".help" for usage hints.<br/>
+              sqlite&gt;
+            </code>
+          </div>
+          <div className="text-gray-400 text-sm mt-2">
+            Il file biblioteca.db viene creato automaticamente se non esiste
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 p-6 rounded-lg border border-green-700">
+            <h3 className="text-xl font-semibold text-green-300 mb-4">📋 Comandi Base CLI</h3>
+            <div className="space-y-2 text-gray-300 text-sm">
+              <div><code className="text-blue-400">.help</code> - Mostra tutti i comandi</div>
+              <div><code className="text-green-400">.tables</code> - Lista le tabelle</div>
+              <div><code className="text-purple-400">.schema</code> - Mostra lo schema</div>
+              <div><code className="text-yellow-400">.quit</code> - Esce da SQLite</div>
+              <div><code className="text-red-400">.exit</code> - Alternativa a .quit</div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-purple-900/50 to-pink-900/50 p-6 rounded-lg border border-purple-700">
+            <h3 className="text-xl font-semibold text-purple-300 mb-4">🎯 Prima Query</h3>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                sqlite&gt; SELECT 'Ciao SQLite!' AS messaggio;<br/>
+                Ciao SQLite!
+              </code>
+            </div>
+            <div className="text-gray-400 text-sm mt-2">
+              Perfetto! Il database funziona
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 8 - Tipi di Dati SQLite
+  {
+    id: 8,
     title: "Vincoli e Chiavi",
     category: "sqlite",
     content: (
@@ -237,9 +294,9 @@ export const sqliteSlides = [
     )
   },
 
-  // Slide 19 - Tipi di Dati SQLite
+  // Slide 8 - Tipi di Dati SQLite
   {
-    id: 9,
+    id: 8,
     title: "Tipi di Dati in SQLite",
     category: "sqlite",
     content: (
@@ -316,9 +373,190 @@ export const sqliteSlides = [
     )
   },
 
-  // Slide 7 - DB Browser for SQLite
+  // Slide 9 - DDL - Data Definition Language
   {
-    id: 7,
+    id: 9,
+    title: "DDL - Data Definition Language",
+    category: "sqlite",
+    content: (
+      <div className="space-y-6">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-green-300 mb-4">Linguaggio di Definizione Dati</h2>
+          <p className="text-gray-400">Comandi per creare e modificare la struttura</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-blue-900/50 to-indigo-900/50 p-6 rounded-lg border border-blue-700">
+            <h3 className="text-xl font-semibold text-blue-300 mb-4">🏗️ CREATE</h3>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                CREATE TABLE libri (<br/>
+                &nbsp;&nbsp;id INTEGER PRIMARY KEY,<br/>
+                &nbsp;&nbsp;titolo TEXT NOT NULL,<br/>
+                &nbsp;&nbsp;autore TEXT NOT NULL<br/>
+                );
+              </code>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 p-6 rounded-lg border border-green-700">
+            <h3 className="text-xl font-semibold text-green-300 mb-4">🔧 ALTER</h3>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                ALTER TABLE libri<br/>
+                ADD COLUMN anno INTEGER;
+              </code>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-red-900/50 to-pink-900/50 p-6 rounded-lg border border-red-700">
+            <h3 className="text-xl font-semibold text-red-300 mb-4">🗑️ DROP</h3>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                DROP TABLE libri;
+              </code>
+            </div>
+            <div className="text-red-200 text-sm mt-2">⚠️ Attenzione: cancella definitivamente!</div>
+          </div>
+
+          <div className="bg-gradient-to-br from-purple-900/50 to-indigo-900/50 p-6 rounded-lg border border-purple-700">
+            <h3 className="text-xl font-semibold text-purple-300 mb-4">📋 INDEX</h3>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                CREATE INDEX idx_autore<br/>
+                ON libri(autore);
+              </code>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 10 - DML vs DQL
+  {
+    id: 10,
+    title: "DML vs DQL",
+    category: "sqlite",
+    content: (
+      <div className="space-y-6">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-green-300 mb-4">Manipolare vs Interrogare</h2>
+          <p className="text-gray-400">Due modi diversi di lavorare con i dati</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-blue-900/50 to-cyan-900/50 p-6 rounded-lg border border-blue-700">
+            <h3 className="text-xl font-semibold text-blue-300 mb-4">📝 DML - Data Manipulation</h3>
+            <div className="space-y-3">
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <strong className="text-green-400">INSERT</strong> - Aggiunge dati
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <strong className="text-yellow-400">UPDATE</strong> - Modifica dati
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <strong className="text-red-400">DELETE</strong> - Rimuove dati
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 p-6 rounded-lg border border-green-700">
+            <h3 className="text-xl font-semibold text-green-300 mb-4">🔍 DQL - Data Query</h3>
+            <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+              <strong className="text-purple-400">SELECT</strong> - Interroga i dati
+            </div>
+            <div className="text-gray-300 text-sm mt-3">
+              Il comando più importante e utilizzato in SQL
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-r from-purple-900/50 to-pink-900/50 p-6 rounded-lg border border-purple-700">
+          <h3 className="text-xl font-semibold text-purple-300 mb-4">💡 Differenze Chiave</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-300">
+            <div>
+              <strong className="text-blue-400">DML:</strong>
+              <ul className="text-sm mt-2 space-y-1">
+                <li>• Modifica il database</li>
+                <li>• Cambia i dati permanentemente</li>
+                <li>• Richiede permessi di scrittura</li>
+              </ul>
+            </div>
+            <div>
+              <strong className="text-green-400">DQL:</strong>
+              <ul className="text-sm mt-2 space-y-1">
+                <li>• Solo lettura</li>
+                <li>• Non modifica nulla</li>
+                <li>• Sicuro da usare</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 11 - DQL - Data Query Language
+  {
+    id: 11,
+    title: "DQL - Data Query Language",
+    category: "sqlite",
+    content: (
+      <div className="space-y-6">
+        <div className="text-center">
+          <Search size={64} className="text-green-400 mb-4 mx-auto" />
+          <h2 className="text-3xl font-bold text-green-300 mb-4">Il Potere di SELECT</h2>
+          <p className="text-gray-400">Tutto quello che puoi fare con una query</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-blue-900/50 to-indigo-900/50 p-6 rounded-lg border border-blue-700">
+            <h3 className="text-xl font-semibold text-blue-300 mb-4">🔍 SELECT Base</h3>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                SELECT colonna1, colonna2<br/>
+                FROM tabella<br/>
+                WHERE condizione<br/>
+                ORDER BY colonna1;
+              </code>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 p-6 rounded-lg border border-green-700">
+            <h3 className="text-xl font-semibold text-green-300 mb-4">⭐ SELECT Avanzato</h3>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                SELECT COUNT(*), AVG(anno)<br/>
+                FROM libri<br/>
+                WHERE genere = 'Fantasy'<br/>
+                GROUP BY autore<br/>
+                HAVING COUNT(*) &gt; 2;
+              </code>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-br from-purple-900/50 to-pink-900/50 p-6 rounded-lg border border-purple-700">
+          <h3 className="text-xl font-semibold text-purple-300 mb-4">🛠️ Clausole Principali</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm text-gray-300">
+            <div><strong className="text-blue-400">SELECT</strong> - Cosa selezionare</div>
+            <div><strong className="text-green-400">FROM</strong> - Da quale tabella</div>
+            <div><strong className="text-yellow-400">WHERE</strong> - Condizioni di filtro</div>
+            <div><strong className="text-purple-400">GROUP BY</strong> - Raggruppa risultati</div>
+            <div><strong className="text-red-400">HAVING</strong> - Filtra gruppi</div>
+            <div><strong className="text-cyan-400">ORDER BY</strong> - Ordina risultati</div>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 12 - Vincoli e Chiavi
+  {
+    id: 12,
     title: "DB Browser for SQLite - Il Nostro Strumento di Laboratorio",
     category: "sqlite",
     content: (

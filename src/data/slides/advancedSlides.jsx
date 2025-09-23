@@ -2,7 +2,7 @@ import React from 'react';
 import { Zap, Shield, Search, BarChart3, Database, Lock, AlertCircle } from 'lucide-react';
 
 export const advancedSlides = [
-  // Slide 15 - Funzioni Aggregate
+  // Slide 20 - Funzioni Aggregate
   {
     id: 20,
     title: "Funzioni Aggregate",
@@ -80,7 +80,7 @@ export const advancedSlides = [
     )
   },
 
-  // Slide 16 - JOIN
+  // Slide 21 - JOIN
   {
     id: 21,
     title: "JOIN - Collegare Tabelle",
@@ -162,7 +162,7 @@ export const advancedSlides = [
     )
   },
 
-  // Slide 17 - Subquery
+  // Slide 22 - Subquery
   {
     id: 22,
     title: "Subquery - Query Annidate",
@@ -239,7 +239,7 @@ export const advancedSlides = [
     )
   },
 
-  // Slide 20 - Indici e Performance
+  // Slide 23 - Indici e Performance
   {
     id: 23,
     title: "Indici e Performance",
@@ -327,7 +327,7 @@ export const advancedSlides = [
     )
   },
 
-  // Slide 31 - Views
+  // Slide 36 - Views
   {
     id: 36,
     title: "Views - Viste Virtuali",
@@ -374,7 +374,7 @@ export const advancedSlides = [
     )
   },
 
-  // Slide 32 - Triggers
+  // Slide 37 - Triggers
   {
     id: 37,
     title: "Triggers - Automazione",
@@ -422,7 +422,7 @@ export const advancedSlides = [
     )
   },
 
-  // Slide 34 - JSON in SQLite
+  // Slide 38 - JSON in SQLite
   {
     id: 38,
     title: "SQLite e JSON",
@@ -480,7 +480,7 @@ export const advancedSlides = [
     )
   },
 
-  // Slide 35 - Backup e Recovery
+  // Slide 39 - Backup e Recovery
   {
     id: 39,
     title: "Backup e Ripristino",
@@ -536,68 +536,7 @@ export const advancedSlides = [
     )
   },
 
-  // Slide 36 - Performance e Ottimizzazione
-  {
-    id: 40,
-    title: "Performance e Ottimizzazione",
-    category: "advanced",
-    content: (
-      <div className="space-y-6">
-        <div className="bg-gradient-to-br from-teal-900/50 to-cyan-900/50 p-6 rounded-lg border border-teal-700">
-          <h3 className="text-xl font-bold text-teal-300 mb-4">🚀 Ottimizzazione Query</h3>
-          <p className="text-gray-300 mb-4">
-            Tecniche per migliorare le performance delle query in SQLite.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="bg-gradient-to-br from-green-900/50 to-green-800/50 p-4 rounded-lg border border-green-700">
-            <h4 className="font-semibold text-green-300 mb-3">✅ Best Practices</h4>
-            <ul className="space-y-1 text-sm text-gray-300">
-              <li>• Usa indici su colonne WHERE</li>
-              <li>• Limita i risultati con LIMIT</li>
-              <li>• Evita SELECT * quando possibile</li>
-              <li>• Usa EXISTS invece di IN</li>
-              <li>• Analizza con EXPLAIN QUERY PLAN</li>
-            </ul>
-          </div>
-          <div className="bg-gradient-to-br from-red-900/50 to-red-800/50 p-4 rounded-lg border border-red-700">
-            <h4 className="font-semibold text-red-300 mb-3">❌ Da Evitare</h4>
-            <ul className="space-y-1 text-sm text-gray-300">
-              <li>• Query con LIKE '%pattern%'</li>
-              <li>• Funzioni in WHERE senza indici</li>
-              <li>• Transazioni troppo lunghe</li>
-              <li>• Molti JOIN senza indici</li>
-              <li>• Subquery correlate inefficienti</li>
-            </ul>
-          </div>
-        </div>
-        <div className="bg-gradient-to-br from-blue-900/50 to-blue-800/50 p-4 rounded-lg border border-blue-700">
-          <h4 className="font-semibold text-blue-300 mb-3">🔍 Analisi Performance</h4>
-          <div className="bg-gray-800 text-green-400 p-3 rounded text-sm">
-            <code>
-              EXPLAIN QUERY PLAN<br/>
-              SELECT u.nome, COUNT(*) FROM utenti u<br/>
-              JOIN prestiti p ON u.id = p.id_utente<br/>
-              GROUP BY u.id;
-            </code>
-          </div>
-        </div>
-        <div className="bg-gradient-to-br from-purple-900/50 to-purple-800/50 p-4 rounded-lg border border-purple-700">
-          <h4 className="font-semibold text-purple-300 mb-3">⚙️ Configurazioni</h4>
-          <div className="bg-gray-800 text-green-400 p-3 rounded text-xs">
-            <code>
-              PRAGMA cache_size = 10000;<br/>
-              PRAGMA temp_store = memory;<br/>
-              PRAGMA journal_mode = WAL;<br/>
-              PRAGMA synchronous = NORMAL;
-            </code>
-          </div>
-        </div>
-      </div>
-    )
-  },
-
-  // Slide 38 - Sicurezza Database
+  // Slide 41 - Sicurezza Database
   {
     id: 41,
     title: "Sicurezza Database",

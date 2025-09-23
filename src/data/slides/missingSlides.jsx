@@ -308,7 +308,7 @@ export const missingSlides = [
     )
   },
 
-  // Slide 25 - Window Functions
+  // Slide 40 - Window Functions
   {
     id: 40,
     title: "Window Functions - Funzioni Finestra",
@@ -389,9 +389,71 @@ export const missingSlides = [
     )
   },
 
-  // Slide 26 - Common Table Expressions (CTE)
+  // Slide 24 - CASE WHEN - Logica Condizionale
   {
-    id: 41,
+    id: 24,
+    title: "CASE WHEN - Logica Condizionale",
+    category: "advanced",
+    content: (
+      <div className="space-y-6">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-cyan-300 mb-4">Procedure Memorizzate</h2>
+          <p className="text-gray-400">Logica riutilizzabile nel database</p>
+        </div>
+
+        <div className="bg-gradient-to-br from-blue-900/50 to-indigo-900/50 p-6 rounded-lg border border-blue-700">
+          <h3 className="text-xl font-semibold text-blue-300 mb-4">📝 Sintassi Base</h3>
+          <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+            <code className="text-green-400 text-sm">
+              SELECT nome,<br/>
+              &nbsp;&nbsp;CASE<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;WHEN eta &lt; 18 THEN 'Minorenne'<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;WHEN eta &lt; 65 THEN 'Adulto'<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;ELSE 'Senior'<br/>
+              &nbsp;&nbsp;END as categoria<br/>
+              FROM utenti;
+            </code>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-blue-900/50 to-indigo-900/50 p-6 rounded-lg border border-blue-700">
+            <h3 className="text-xl font-semibold text-blue-300 mb-4">📋 Esempio con Vista</h3>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                CREATE VIEW prestiti_attivi AS<br/>
+                SELECT u.nome, l.titolo, p.data_prestito<br/>
+                FROM prestiti p<br/>
+                JOIN utenti u ON p.id_utente = u.id<br/>
+                JOIN libri l ON p.id_libro = l.id<br/>
+                WHERE p.restituito = 0;
+              </code>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 p-6 rounded-lg border border-green-700">
+            <h3 className="text-xl font-semibold text-green-300 mb-4">⚡ Esempio con Trigger</h3>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                CREATE TRIGGER controlla_limite<br/>
+                BEFORE INSERT ON prestiti<br/>
+                WHEN (SELECT COUNT(*) FROM prestiti<br/>
+                      WHERE id_utente = NEW.id_utente<br/>
+                      AND restituito = 0) &gt;= 3<br/>
+                BEGIN<br/>
+                  SELECT RAISE(ABORT, 'Limite prestiti raggiunto');<br/>
+                END;
+              </code>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 26 - Date e Time Functions
+  {
+    id: 26,
     title: "CTE - Common Table Expressions",
     category: "advanced",
     content: (
@@ -470,9 +532,9 @@ export const missingSlides = [
     )
   },
 
-  // Slide 27 - Date e Time Functions
+  // Slide 27 - String Functions
   {
-    id: 42,
+    id: 27,
     title: "Funzioni Data e Ora",
     category: "sql",
     content: (
@@ -568,9 +630,9 @@ export const missingSlides = [
     )
   },
 
-  // Slide 28 - String Functions
+  // Slide 28 - JOIN in biblioteca
   {
-    id: 43,
+    id: 28,
     title: "Funzioni per Stringhe",
     category: "sql",
     content: (
@@ -664,9 +726,9 @@ export const missingSlides = [
     )
   },
 
-  // Slide 29 - PRAGMA Commands
+  // Slide 29 - Subquery biblioteca
   {
-    id: 44,
+    id: 29,
     title: "PRAGMA - Comandi di Configurazione",
     category: "sqlite",
     content: (

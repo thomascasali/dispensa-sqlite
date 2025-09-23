@@ -2,134 +2,125 @@ import React from 'react';
 import { Code, Search, AlertCircle, Table, FileText, Users, User, Settings } from 'lucide-react';
 
 export const sqlSlides = [
-  // Slide 8 - Introduzione a SQL
+  // Slide 13 - Progetto Completo: Sistema Studenti-Classi
   {
-    id: 10,
-    title: "SQL - Structured Query Language",
-    category: "sql",
-    content: (
-      <div className="space-y-8">
-        <div className="text-center">
-          <Code size={80} className="text-cyan-400 mb-4 mx-auto" />
-          <h2 className="text-4xl font-bold text-cyan-300 mb-4">SQL</h2>
-          <p className="text-gray-400 text-lg">Il linguaggio universale dei database</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-gradient-to-br from-cyan-900/50 to-blue-900/50 p-6 rounded-lg border border-cyan-700">
-            <h3 className="text-xl font-semibold text-cyan-300 mb-4">📋 Caratteristiche SQL</h3>
-            <ul className="space-y-2 text-gray-300">
-              <li>• <strong>Dichiarativo:</strong> Dici cosa vuoi, non come</li>
-              <li>• <strong>Standard:</strong> Stesso linguaggio per tutti i DBMS</li>
-              <li>• <strong>Potente:</strong> Operazioni complesse in poche righe</li>
-              <li>• <strong>Leggibile:</strong> Simile all'inglese</li>
-              <li>• <strong>Versatile:</strong> Per ogni tipo di operazione</li>
-            </ul>
-          </div>
-
-          <div className="bg-gradient-to-br from-purple-900/50 to-pink-900/50 p-6 rounded-lg border border-purple-700">
-            <h3 className="text-xl font-semibold text-purple-300 mb-4">🔧 Categorie di Comandi</h3>
-            <div className="space-y-3">
-              <div className="bg-blue-800/30 p-2 rounded">
-                <strong className="text-blue-300">DDL</strong> - Data Definition Language
-                <div className="text-sm text-gray-400">CREATE, ALTER, DROP</div>
-              </div>
-              <div className="bg-green-800/30 p-2 rounded">
-                <strong className="text-green-300">DML</strong> - Data Manipulation Language
-                <div className="text-sm text-gray-400">INSERT, UPDATE, DELETE</div>
-              </div>
-              <div className="bg-yellow-800/30 p-2 rounded">
-                <strong className="text-yellow-300">DQL</strong> - Data Query Language
-                <div className="text-sm text-gray-400">SELECT</div>
-              </div>
-              <div className="bg-red-800/30 p-2 rounded">
-                <strong className="text-red-300">DCL</strong> - Data Control Language
-                <div className="text-sm text-gray-400">GRANT, REVOKE</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-gradient-to-r from-green-900/50 to-teal-900/50 p-6 rounded-lg border border-green-700">
-          <h3 className="text-xl font-semibold text-green-300 mb-3">💡 Il Primo Comando</h3>
-          <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
-            <code className="text-green-400 text-lg">SELECT 'Hello World' AS saluto;</code>
-          </div>
-          <p className="text-gray-400 mt-3">Questo comando restituisce semplicemente il testo "Hello World" con l'alias "saluto".</p>
-        </div>
-      </div>
-    )
-  },
-
-  // Slide 9 - CREATE TABLE
-  {
-    id: 11,
-    title: "CREATE TABLE - Creare Tabelle",
-    category: "sql",
+    id: 13,
+    title: "Progetto Completo: Sistema Studenti-Classi",
+    category: "practice",
     content: (
       <div className="space-y-6">
         <div className="text-center">
-          <Table size={64} className="text-cyan-400 mb-4 mx-auto" />
-          <h2 className="text-3xl font-bold text-cyan-300 mb-4">Creazione Tabelle</h2>
-          <p className="text-gray-400">La base di tutto: definire la struttura dei dati</p>
+          <Users size={64} className="text-orange-400 mb-4 mx-auto" />
+          <h2 className="text-3xl font-bold text-orange-300 mb-4">Sistema Gestione Scolastica</h2>
+          <p className="text-gray-400">Il nostro primo progetto completo per consolidare CREATE TABLE e relazioni</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-gradient-to-br from-cyan-900/50 to-blue-900/50 p-6 rounded-lg border border-cyan-700">
-            <h3 className="text-xl font-semibold text-cyan-300 mb-4">📝 Sintassi Base</h3>
+          <div className="bg-gradient-to-br from-blue-900/50 to-blue-800/50 p-6 rounded-lg border border-blue-700">
+            <h3 className="text-xl font-semibold text-blue-300 mb-4 flex items-center">
+              <Users className="mr-2" size={20} />
+              🏫 Tabella Classi
+            </h3>
             <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
               <code className="text-green-400 text-sm">
-                CREATE TABLE nome_tabella (<br/>
-                &nbsp;&nbsp;colonna1 TIPO VINCOLI,<br/>
-                &nbsp;&nbsp;colonna2 TIPO VINCOLI,<br/>
-                &nbsp;&nbsp;...<br/>
+                CREATE TABLE classi (<br/>
+                &nbsp;&nbsp;id_classe INTEGER PRIMARY KEY AUTOINCREMENT,<br/>
+                &nbsp;&nbsp;sigla TEXT NOT NULL UNIQUE,<br/>
+                &nbsp;&nbsp;indirizzo TEXT NOT NULL<br/>
+                );
+              </code>
+            </div>
+            <div className="text-xs text-gray-400 mt-2">
+              <strong>UNIQUE:</strong> Ogni sigla è univoca (es: "3H", "4G")
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-green-900/50 to-green-800/50 p-6 rounded-lg border border-green-700">
+            <h3 className="text-xl font-semibold text-green-300 mb-4 flex items-center">
+              <User className="mr-2" size={20} />
+              🎓 Tabella Studenti
+            </h3>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                CREATE TABLE studenti (<br/>
+                &nbsp;&nbsp;id_studente INTEGER PRIMARY KEY AUTOINCREMENT,<br/>
+                &nbsp;&nbsp;nome TEXT NOT NULL,<br/>
+                &nbsp;&nbsp;cognome TEXT NOT NULL,<br/>
+                &nbsp;&nbsp;data_nascita TEXT,<br/>
+                &nbsp;&nbsp;media_voti REAL DEFAULT 0.0,<br/>
+                &nbsp;&nbsp;id_classe INTEGER NOT NULL,<br/>
+                &nbsp;&nbsp;FOREIGN KEY (id_classe) REFERENCES classi(id_classe)<br/>
                 );
               </code>
             </div>
           </div>
+        </div>
 
-          <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 p-6 rounded-lg border border-green-700">
-            <h3 className="text-xl font-semibold text-green-300 mb-4">🔧 Tipi di Dati SQLite</h3>
-            <div className="space-y-2 text-gray-300 text-sm">
-              <div><code className="text-blue-400">INTEGER</code> - Numeri interi</div>
-              <div><code className="text-purple-400">REAL</code> - Numeri decimali</div>
-              <div><code className="text-green-400">TEXT</code> - Stringhe di testo</div>
-              <div><code className="text-yellow-400">BLOB</code> - Dati binari</div>
-              <div><code className="text-red-400">NULL</code> - Valore nullo</div>
+        <div className="bg-gradient-to-br from-purple-900/50 to-indigo-900/50 p-6 rounded-lg border border-purple-700">
+          <h3 className="text-xl font-semibold text-purple-300 mb-4">📊 Schema Relazionale</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-gray-900/30 p-4 rounded text-center">
+              <div className="text-blue-400 font-semibold mb-2">📋 Classi</div>
+              <div className="text-xs text-gray-300 space-y-1">
+                <div><code>id_classe</code> (PK)</div>
+                <div><code>sigla</code></div>
+                <div><code>indirizzo</code></div>
+              </div>
             </div>
+            <div className="flex items-center justify-center">
+              <div className="text-purple-300 text-3xl">→</div>
+            </div>
+            <div className="bg-gray-900/30 p-4 rounded text-center">
+              <div className="text-green-400 font-semibold mb-2">👥 Studenti</div>
+              <div className="text-xs text-gray-300 space-y-1">
+                <div><code>id_studente</code> (PK)</div>
+                <div><code>nome, cognome</code></div>
+                <div><code>data_nascita</code></div>
+                <div><code>media_voti</code></div>
+                <div><code>id_classe</code> (FK)</div>
+              </div>
+            </div>
+          </div>
+          <div className="text-center mt-4 text-sm text-purple-200">
+            <strong>Relazione 1:N</strong> - Una classe può avere molti studenti
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-900/50 to-red-900/50 p-6 rounded-lg border border-orange-700">
-          <h3 className="text-xl font-semibold text-orange-300 mb-4">🎯 Esempio Completo</h3>
-          <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
-            <code className="text-green-400 text-sm">
-              CREATE TABLE studenti (<br/>
-              &nbsp;&nbsp;id_studente INTEGER PRIMARY KEY AUTOINCREMENT,<br/>
-              &nbsp;&nbsp;nome TEXT NOT NULL,<br/>
-              &nbsp;&nbsp;cognome TEXT NOT NULL,<br/>
-              &nbsp;&nbsp;data_nascita TEXT,<br/>
-              &nbsp;&nbsp;media_voti REAL DEFAULT 0.0,<br/>
-              &nbsp;&nbsp;id_classe INTEGER NOT NULL<br/>
-              );
-            </code>
+        <div className="bg-gradient-to-r from-orange-900/50 to-red-900/50 p-6 rounded-lg border border-orange-700">
+          <h3 className="text-xl font-semibold text-orange-300 mb-4">💡 Vantaggi di questo Schema</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <h4 className="text-orange-200 font-semibold mb-2">✅ Efficienza:</h4>
+              <ul className="text-sm text-gray-300 space-y-1">
+                <li>• Dati classe memorizzati una sola volta</li>
+                <li>• Cambio indirizzo = 1 aggiornamento</li>
+                <li>• Spazio di archiviazione ottimizzato</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-orange-200 font-semibold mb-2">🛡️ Integrità:</h4>
+              <ul className="text-sm text-gray-300 space-y-1">
+                <li>• Impossibile assegnare classe inesistente</li>
+                <li>• Coerenza garantita dal DBMS</li>
+                <li>• Errori di digitazione prevenuti</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     )
   },
 
-  // Slide 10 - Convenzioni di Naming
+  // Slide 14 - INSERT - Inserimento Dati
   {
-    id: 10,
-    title: "Convenzioni di Naming per Database",
+    id: 14,
+    title: "INSERT - Inserire Dati",
     category: "sql",
     content: (
       <div className="space-y-6">
         <div className="text-center">
-          <FileText size={64} className="text-cyan-400 mb-4 mx-auto" />
-          <h2 className="text-3xl font-bold text-cyan-300 mb-4">Regole di denominazione e convenzione snake_case</h2>
-          <p className="text-gray-400">Il nostro standard per nomi leggibili e professionali</p>
+          <h2 className="text-3xl font-bold text-cyan-300 mb-4">Inserimento Dati</h2>
+          <p className="text-gray-400">Popolare le tabelle con i nostri dati</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
