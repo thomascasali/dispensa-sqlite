@@ -1,0 +1,821 @@
+import React from 'react';
+import { Users, Table, BarChart3, Database } from 'lucide-react';
+
+export const missingSlides = [
+  // Slide 21 - Database Studenti
+  {
+    id: 24,
+    title: "Esempio: Database Studenti",
+    category: "practice",
+    content: (
+      <div className="space-y-6">
+        <div className="text-center">
+          <Users size={64} className="text-orange-400 mb-4 mx-auto" />
+          <h2 className="text-3xl font-bold text-orange-300 mb-4">Sistema Gestione Studenti</h2>
+          <p className="text-gray-400">Un altro esempio pratico per consolidare le conoscenze</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-blue-900/50 to-blue-800/50 p-6 rounded-lg border border-blue-700">
+            <h3 className="text-xl font-semibold text-blue-300 mb-4">👨‍🎓 Tabella Studenti</h3>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                CREATE TABLE studenti (<br/>
+                &nbsp;&nbsp;id INTEGER PRIMARY KEY,<br/>
+                &nbsp;&nbsp;nome TEXT NOT NULL,<br/>
+                &nbsp;&nbsp;cognome TEXT NOT NULL,<br/>
+                &nbsp;&nbsp;data_nascita TEXT,<br/>
+                &nbsp;&nbsp;classe_id INTEGER,<br/>
+                &nbsp;&nbsp;email TEXT UNIQUE<br/>
+                );
+              </code>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-green-900/50 to-green-800/50 p-6 rounded-lg border border-green-700">
+            <h3 className="text-xl font-semibold text-green-300 mb-4">🏫 Tabella Classi</h3>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                CREATE TABLE classi (<br/>
+                &nbsp;&nbsp;id INTEGER PRIMARY KEY,<br/>
+                &nbsp;&nbsp;nome TEXT NOT NULL,<br/>
+                &nbsp;&nbsp;anno INTEGER,<br/>
+                &nbsp;&nbsp;sezione TEXT,<br/>
+                &nbsp;&nbsp;max_studenti INTEGER DEFAULT 25<br/>
+                );
+              </code>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-br from-purple-900/50 to-purple-800/50 p-6 rounded-lg border border-purple-700">
+          <h3 className="text-xl font-semibold text-purple-300 mb-4">📊 Query Esempio</h3>
+          <div className="space-y-3">
+            <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+              <div className="text-sm text-gray-400 mb-1">Studenti per classe:</div>
+              <code className="text-green-400 text-sm">
+                SELECT c.nome, COUNT(s.id) as num_studenti<br/>
+                FROM classi c<br/>
+                LEFT JOIN studenti s ON c.id = s.classe_id<br/>
+                GROUP BY c.id, c.nome;
+              </code>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 22 - HAVING clause
+  {
+    id: 25,
+    title: "HAVING - Filtrare Gruppi",
+    category: "sql",
+    content: (
+      <div className="space-y-6">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-cyan-300 mb-4">HAVING vs WHERE</h2>
+          <p className="text-gray-400">Filtrare i risultati dopo il raggruppamento</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-blue-900/50 to-cyan-900/50 p-6 rounded-lg border border-blue-700">
+            <h3 className="text-xl font-semibold text-blue-300 mb-4">🔍 WHERE vs HAVING</h3>
+            <div className="space-y-3 text-gray-300 text-sm">
+              <div className="bg-red-900/30 p-3 rounded">
+                <strong className="text-red-400">WHERE:</strong> Filtra le righe prima del GROUP BY
+              </div>
+              <div className="bg-green-900/30 p-3 rounded">
+                <strong className="text-green-400">HAVING:</strong> Filtra i gruppi dopo il GROUP BY
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-purple-900/50 to-indigo-900/50 p-6 rounded-lg border border-purple-700">
+            <h3 className="text-xl font-semibold text-purple-300 mb-4">📝 Esempio HAVING</h3>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                SELECT genere, COUNT(*) as totale<br/>
+                FROM libri<br/>
+                GROUP BY genere<br/>
+                HAVING COUNT(*) &lg; 5<br/>
+                ORDER BY totale DESC;
+              </code>
+            </div>
+            <div className="text-gray-400 text-xs mt-2">
+              Solo generi con più di 5 libri
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 p-6 rounded-lg border border-green-700">
+          <h3 className="text-xl font-semibold text-green-300 mb-4">🎯 Esempi Pratici</h3>
+          <div className="space-y-4">
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <div className="text-sm text-gray-400 mb-2">Utenti con più di 2 prestiti:</div>
+              <code className="text-green-400 text-sm">
+                SELECT u.nome, u.cognome, COUNT(p.id) as prestiti<br/>
+                FROM utenti u<br/>
+                JOIN prestiti p ON u.id = p.utente_id<br/>
+                GROUP BY u.id<br/>
+                HAVING COUNT(p.id) &lg; 2;
+              </code>
+            </div>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <div className="text-sm text-gray-400 mb-2">Autori prolifici (più di 3 libri):</div>
+              <code className="text-green-400 text-sm">
+                SELECT autore, COUNT(*) as libri,<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AVG(anno_pubblicazione) as anno_medio<br/>
+                FROM libri<br/>
+                GROUP BY autore<br/>
+                HAVING COUNT(*) &lg; 3<br/>
+                ORDER BY libri DESC;
+              </code>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 23 - CASE WHEN
+  {
+    id: 26,
+    title: "CASE WHEN - Logica Condizionale",
+    category: "sql",
+    content: (
+      <div className="space-y-6">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-cyan-300 mb-4">Decisioni nelle Query</h2>
+          <p className="text-gray-400">Aggiungere logica condizionale alle query</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-blue-900/50 to-indigo-900/50 p-6 rounded-lg border border-blue-700">
+            <h3 className="text-xl font-semibold text-blue-300 mb-4">📝 Sintassi Base</h3>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                SELECT nome,<br/>
+                &nbsp;&nbsp;CASE<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;WHEN eta &lt; 18 THEN 'Minorenne'<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;WHEN eta &lt; 65 THEN 'Adulto'<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;ELSE 'Senior'<br/>
+                &nbsp;&nbsp;END as categoria<br/>
+                FROM utenti;
+              </code>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 p-6 rounded-lg border border-green-700">
+            <h3 className="text-xl font-semibold text-green-300 mb-4">🏷️ Esempio Biblioteca</h3>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                SELECT titolo, autore,<br/>
+                &nbsp;&nbsp;CASE<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;WHEN anno_pubblicazione &lt; 1950<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;THEN 'Classico'<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;WHEN anno_pubblicazione &lt; 2000<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;THEN 'Moderno'<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;ELSE 'Contemporaneo'<br/>
+                &nbsp;&nbsp;END as epoca<br/>
+                FROM libri;
+              </code>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-br from-purple-900/50 to-pink-900/50 p-6 rounded-lg border border-purple-700">
+          <h3 className="text-xl font-semibold text-purple-300 mb-4">📊 CASE con Aggregati</h3>
+          <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+            <div className="text-sm text-gray-400 mb-2">Statistiche per epoca:</div>
+            <code className="text-green-400 text-sm">
+              SELECT genere,<br/>
+              &nbsp;&nbsp;COUNT(CASE WHEN anno_pubblicazione &lt; 1950 THEN 1 END) as classici,<br/>
+              &nbsp;&nbsp;COUNT(CASE WHEN anno_pubblicazione &gt;= 2000 THEN 1 END) as contemporanei,<br/>
+              &nbsp;&nbsp;COUNT(*) as totale<br/>
+              FROM libri<br/>
+              GROUP BY genere;
+            </code>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 24 - UNION
+  {
+    id: 27,
+    title: "UNION - Combinare Risultati",
+    category: "sql",
+    content: (
+      <div className="space-y-6">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-cyan-300 mb-4">Unire Query Multiple</h2>
+          <p className="text-gray-400">Combinare risultati di query diverse</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-blue-900/50 to-cyan-900/50 p-6 rounded-lg border border-blue-700">
+            <h3 className="text-xl font-semibold text-blue-300 mb-4">🔗 UNION vs UNION ALL</h3>
+            <div className="space-y-3">
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <strong className="text-green-400">UNION:</strong>
+                <div className="text-gray-400 text-sm">Rimuove duplicati automaticamente</div>
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <strong className="text-purple-400">UNION ALL:</strong>
+                <div className="text-gray-400 text-sm">Mantiene tutti i risultati</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 p-6 rounded-lg border border-green-700">
+            <h3 className="text-xl font-semibold text-green-300 mb-4">📝 Esempio Semplice</h3>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                SELECT nome, 'Utente' as tipo<br/>
+                FROM utenti<br/>
+                WHERE attivo = 1<br/>
+                UNION<br/>
+                SELECT autore, 'Autore' as tipo<br/>
+                FROM libri<br/>
+                WHERE anno_pubblicazione &gt; 2000;
+              </code>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-br from-purple-900/50 to-indigo-900/50 p-6 rounded-lg border border-purple-700">
+          <h3 className="text-xl font-semibold text-purple-300 mb-4">🎯 Uso Pratico</h3>
+          <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+            <div className="text-sm text-gray-400 mb-2">Lista completa di contatti:</div>
+            <code className="text-green-400 text-sm">
+              SELECT nome, cognome, email, 'Utente Biblioteca' as ruolo<br/>
+              FROM utenti<br/>
+              UNION ALL<br/>
+              SELECT nome, cognome, email, 'Staff'<br/>
+              FROM staff<br/>
+              ORDER BY cognome, nome;
+            </code>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-r from-orange-900/50 to-red-900/50 p-6 rounded-lg border border-orange-700">
+          <h3 className="text-xl font-semibold text-orange-300 mb-3">⚠️ Regole UNION</h3>
+          <ul className="space-y-2 text-gray-300 text-sm">
+            <li>• Stesso numero di colonne</li>
+            <li>• Tipi di dati compatibili</li>
+            <li>• Nomi colonne dalla prima query</li>
+            <li>• ORDER BY solo alla fine</li>
+          </ul>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 25 - Window Functions
+  {
+    id: 28,
+    title: "Window Functions - Funzioni Finestra",
+    category: "advanced",
+    content: (
+      <div className="space-y-6">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-red-300 mb-4">Analisi Avanzata</h2>
+          <p className="text-gray-400">Calcoli sofisticati su set di righe</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-blue-900/50 to-indigo-900/50 p-6 rounded-lg border border-blue-700">
+            <h3 className="text-xl font-semibold text-blue-300 mb-4">🪟 ROW_NUMBER()</h3>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                SELECT nome, cognome,<br/>
+                &nbsp;&nbsp;ROW_NUMBER() OVER (<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;ORDER BY cognome<br/>
+                &nbsp;&nbsp;) as numero_riga<br/>
+                FROM utenti;
+              </code>
+            </div>
+            <div className="text-gray-400 text-xs mt-2">
+              Assegna numeri progressivi
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 p-6 rounded-lg border border-green-700">
+            <h3 className="text-xl font-semibold text-green-300 mb-4">📊 RANK() e DENSE_RANK()</h3>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                SELECT autore, COUNT(*) as libri,<br/>
+                &nbsp;&nbsp;RANK() OVER (<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;ORDER BY COUNT(*) DESC<br/>
+                &nbsp;&nbsp;) as classifica<br/>
+                FROM libri<br/>
+                GROUP BY autore;
+              </code>
+            </div>
+            <div className="text-gray-400 text-xs mt-2">
+              Classifica autori per numero di libri
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-br from-purple-900/50 to-pink-900/50 p-6 rounded-lg border border-purple-700">
+          <h3 className="text-xl font-semibold text-purple-300 mb-4">🎯 PARTITION BY</h3>
+          <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+            <div className="text-sm text-gray-400 mb-2">Classifica per genere:</div>
+            <code className="text-green-400 text-sm">
+              SELECT titolo, autore, genere, anno_pubblicazione,<br/>
+              &nbsp;&nbsp;ROW_NUMBER() OVER (<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;PARTITION BY genere<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;ORDER BY anno_pubblicazione DESC<br/>
+              &nbsp;&nbsp;) as pos_nel_genere<br/>
+              FROM libri;
+            </code>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-r from-orange-900/50 to-yellow-900/50 p-6 rounded-lg border border-orange-700">
+          <h3 className="text-xl font-semibold text-orange-300 mb-3">🔧 Altre Funzioni</h3>
+          <div className="grid grid-cols-2 gap-4 text-sm text-gray-300">
+            <div>
+              <code className="text-blue-400">LAG()</code> - Valore precedente<br/>
+              <code className="text-green-400">LEAD()</code> - Valore successivo<br/>
+              <code className="text-purple-400">FIRST_VALUE()</code> - Primo valore
+            </div>
+            <div>
+              <code className="text-yellow-400">LAST_VALUE()</code> - Ultimo valore<br/>
+              <code className="text-red-400">NTILE()</code> - Divide in gruppi<br/>
+              <code className="text-cyan-400">PERCENT_RANK()</code> - Percentile
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 26 - Common Table Expressions (CTE)
+  {
+    id: 29,
+    title: "CTE - Common Table Expressions",
+    category: "advanced",
+    content: (
+      <div className="space-y-6">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-red-300 mb-4">Query Temporanee</h2>
+          <p className="text-gray-400">Semplificare query complesse con tabelle temporanee</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-blue-900/50 to-cyan-900/50 p-6 rounded-lg border border-blue-700">
+            <h3 className="text-xl font-semibold text-blue-300 mb-4">📝 Sintassi Base</h3>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                WITH prestiti_recenti AS (<br/>
+                &nbsp;&nbsp;SELECT * FROM prestiti<br/>
+                &nbsp;&nbsp;WHERE data_prestito &lg; '2024-01-01'<br/>
+                )<br/>
+                SELECT u.nome, COUNT(*)<br/>
+                FROM prestiti_recenti p<br/>
+                JOIN utenti u ON p.utente_id = u.id<br/>
+                GROUP BY u.id;
+              </code>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 p-6 rounded-lg border border-green-700">
+            <h3 className="text-xl font-semibold text-green-300 mb-4">🔄 CTE Multiple</h3>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                WITH<br/>
+                attivi AS (<br/>
+                &nbsp;&nbsp;SELECT * FROM utenti WHERE attivo = 1<br/>
+                ),<br/>
+                recenti AS (<br/>
+                &nbsp;&nbsp;SELECT * FROM prestiti WHERE data_prestito &lg; '2024-01-01'<br/>
+                )<br/>
+                SELECT a.nome, COUNT(r.id)<br/>
+                FROM attivi a<br/>
+                LEFT JOIN recenti r ON a.id = r.utente_id<br/>
+                GROUP BY a.id;
+              </code>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-br from-purple-900/50 to-indigo-900/50 p-6 rounded-lg border border-purple-700">
+          <h3 className="text-xl font-semibold text-purple-300 mb-4">🎯 Vantaggi CTE</h3>
+          <ul className="space-y-2 text-gray-300">
+            <li>• <strong className="text-blue-400">Leggibilità:</strong> Code più chiaro e modulare</li>
+            <li>• <strong className="text-green-400">Riutilizzo:</strong> Stessa CTE usata più volte</li>
+            <li>• <strong className="text-purple-400">Debugging:</strong> Easier to test parts</li>
+            <li>• <strong className="text-orange-400">Manutenzione:</strong> Modifiche localizzate</li>
+          </ul>
+        </div>
+
+        <div className="bg-gradient-to-r from-orange-900/50 to-red-900/50 p-6 rounded-lg border border-orange-700">
+          <h3 className="text-xl font-semibold text-orange-300 mb-4">📊 Esempio Complesso</h3>
+          <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+            <div className="text-sm text-gray-400 mb-2">Analisi prestiti per trimestre:</div>
+            <code className="text-green-400 text-sm">
+              WITH trimestri AS (<br/>
+              &nbsp;&nbsp;SELECT *, <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;CASE WHEN strftime('%m', data_prestito) IN ('01','02','03') THEN 'Q1'<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHEN strftime('%m', data_prestito) IN ('04','05','06') THEN 'Q2'<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE 'Q3/Q4' END as trimestre<br/>
+              &nbsp;&nbsp;FROM prestiti<br/>
+              )<br/>
+              SELECT trimestre, COUNT(*) as totale_prestiti<br/>
+              FROM trimestri<br/>
+              GROUP BY trimestre;
+            </code>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 27 - Date e Time Functions
+  {
+    id: 30,
+    title: "Funzioni Data e Ora",
+    category: "sql",
+    content: (
+      <div className="space-y-6">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-cyan-300 mb-4">Lavorare con Date e Orari</h2>
+          <p className="text-gray-400">Gestire il tempo nei database</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-blue-900/50 to-indigo-900/50 p-6 rounded-lg border border-blue-700">
+            <h3 className="text-xl font-semibold text-blue-300 mb-4">📅 Funzioni Base</h3>
+            <div className="space-y-3">
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">SELECT datetime('now');</code>
+                <div className="text-gray-400 text-xs mt-1">Data e ora corrente</div>
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">SELECT date('now');</code>
+                <div className="text-gray-400 text-xs mt-1">Solo la data</div>
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">SELECT time('now');</code>
+                <div className="text-gray-400 text-xs mt-1">Solo l'orario</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 p-6 rounded-lg border border-green-700">
+            <h3 className="text-xl font-semibold text-green-300 mb-4">🔧 Calcoli Temporali</h3>
+            <div className="space-y-3">
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">
+                  SELECT date('now', '+7 days');
+                </code>
+                <div className="text-gray-400 text-xs mt-1">Fra una settimana</div>
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">
+                  SELECT date('now', '-1 month');
+                </code>
+                <div className="text-gray-400 text-xs mt-1">Un mese fa</div>
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">
+                  SELECT date('now', 'start of year');
+                </code>
+                <div className="text-gray-400 text-xs mt-1">Inizio anno</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-br from-purple-900/50 to-pink-900/50 p-6 rounded-lg border border-purple-700">
+          <h3 className="text-xl font-semibold text-purple-300 mb-4">📊 strftime() - Formattazione</h3>
+          <div className="space-y-3">
+            <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                SELECT strftime('%Y-%m', data_prestito) as anno_mese,<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;COUNT(*) as prestiti<br/>
+                FROM prestiti<br/>
+                GROUP BY anno_mese;
+              </code>
+            </div>
+            <div className="text-gray-400 text-sm mt-2">
+              <strong>Formati utili:</strong> %Y (anno), %m (mese), %d (giorno), %H (ora), %M (minuti)
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-r from-orange-900/50 to-yellow-900/50 p-6 rounded-lg border border-orange-700">
+          <h3 className="text-xl font-semibold text-orange-300 mb-4">🎯 Esempi Biblioteca</h3>
+          <div className="space-y-3">
+            <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+              <div className="text-sm text-gray-400 mb-1">Prestiti scaduti:</div>
+              <code className="text-green-400 text-sm">
+                SELECT * FROM prestiti<br/>
+                WHERE date(data_prestito, '+30 days') &lt; date('now')<br/>
+                AND restituito = 0;
+              </code>
+            </div>
+            <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+              <div className="text-sm text-gray-400 mb-1">Età degli utenti:</div>
+              <code className="text-green-400 text-sm">
+                SELECT nome, <br/>
+                &nbsp;&nbsp;CAST((julianday('now') - julianday(data_nascita)) / 365.25 AS INTEGER) as eta<br/>
+                FROM utenti;
+              </code>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 28 - String Functions
+  {
+    id: 31,
+    title: "Funzioni per Stringhe",
+    category: "sql",
+    content: (
+      <div className="space-y-6">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-cyan-300 mb-4">Manipolare il Testo</h2>
+          <p className="text-gray-400">Operazioni avanzate sulle stringhe</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-blue-900/50 to-cyan-900/50 p-6 rounded-lg border border-blue-700">
+            <h3 className="text-xl font-semibold text-blue-300 mb-4">✂️ Tagliare e Unire</h3>
+            <div className="space-y-3">
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">
+                  SELECT substr(titolo, 1, 10) || '...'<br/>
+                  FROM libri;
+                </code>
+                <div className="text-gray-400 text-xs mt-1">Prime 10 lettere + ...</div>
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">
+                  SELECT nome || ' ' || cognome as nome_completo<br/>
+                  FROM utenti;
+                </code>
+                <div className="text-gray-400 text-xs mt-1">Concatenazione</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 p-6 rounded-lg border border-green-700">
+            <h3 className="text-xl font-semibold text-green-300 mb-4">🔍 Cercare e Sostituire</h3>
+            <div className="space-y-3">
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">
+                  SELECT instr(email, '@') as posizione_chiocciola<br/>
+                  FROM utenti;
+                </code>
+                <div className="text-gray-400 text-xs mt-1">Posizione di un carattere</div>
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">
+                  SELECT replace(titolo, 'Harry', 'Henry')<br/>
+                  FROM libri;
+                </code>
+                <div className="text-gray-400 text-xs mt-1">Sostituire testo</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-br from-purple-900/50 to-indigo-900/50 p-6 rounded-lg border border-purple-700">
+          <h3 className="text-xl font-semibold text-purple-300 mb-4">📐 Lunghezza e Formato</h3>
+          <div className="space-y-3">
+            <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                SELECT titolo, length(titolo) as caratteri<br/>
+                FROM libri<br/>
+                WHERE length(titolo) &lg; 20;
+              </code>
+            </div>
+            <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                SELECT upper(nome), lower(email)<br/>
+                FROM utenti;
+              </code>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-r from-orange-900/50 to-red-900/50 p-6 rounded-lg border border-orange-700">
+          <h3 className="text-xl font-semibold text-orange-300 mb-4">🎯 Esempi Pratici</h3>
+          <div className="space-y-3">
+            <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+              <div className="text-sm text-gray-400 mb-1">Estrarre dominio email:</div>
+              <code className="text-green-400 text-sm">
+                SELECT nome, substr(email, instr(email, '@') + 1) as dominio<br/>
+                FROM utenti;
+              </code>
+            </div>
+            <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+              <div className="text-sm text-gray-400 mb-1">Iniziali nome:</div>
+              <code className="text-green-400 text-sm">
+                SELECT substr(nome,1,1) || '.' || substr(cognome,1,1) || '.' as iniziali<br/>
+                FROM utenti;
+              </code>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 29 - PRAGMA Commands
+  {
+    id: 32,
+    title: "PRAGMA - Comandi di Configurazione",
+    category: "sqlite",
+    content: (
+      <div className="space-y-6">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-green-300 mb-4">Configurare SQLite</h2>
+          <p className="text-gray-400">Comandi speciali per ottimizzare e configurare</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-blue-900/50 to-cyan-900/50 p-6 rounded-lg border border-blue-700">
+            <h3 className="text-xl font-semibold text-blue-300 mb-4">🔍 Informazioni Database</h3>
+            <div className="space-y-3">
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">PRAGMA table_info(libri);</code>
+                <div className="text-gray-400 text-xs mt-1">Struttura tabella</div>
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">PRAGMA database_list;</code>
+                <div className="text-gray-400 text-xs mt-1">Database collegati</div>
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">PRAGMA foreign_key_list(prestiti);</code>
+                <div className="text-gray-400 text-xs mt-1">Chiavi esterne</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 p-6 rounded-lg border border-green-700">
+            <h3 className="text-xl font-semibold text-green-300 mb-4">⚙️ Configurazioni</h3>
+            <div className="space-y-3">
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">PRAGMA foreign_keys = ON;</code>
+                <div className="text-gray-400 text-xs mt-1">Abilita controllo FK</div>
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">PRAGMA journal_mode = WAL;</code>
+                <div className="text-gray-400 text-xs mt-1">Modalità journaling</div>
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">PRAGMA cache_size = 10000;</code>
+                <div className="text-gray-400 text-xs mt-1">Dimensione cache</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-br from-purple-900/50 to-indigo-900/50 p-6 rounded-lg border border-purple-700">
+          <h3 className="text-xl font-semibold text-purple-300 mb-4">📊 Statistiche e Analisi</h3>
+          <div className="space-y-3">
+            <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">PRAGMA page_count;</code>
+              <span className="text-gray-400 text-xs ml-2">Numero pagine database</span>
+            </div>
+            <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">PRAGMA page_size;</code>
+              <span className="text-gray-400 text-xs ml-2">Dimensione pagina</span>
+            </div>
+            <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">PRAGMA integrity_check;</code>
+              <span className="text-gray-400 text-xs ml-2">Controllo integrità</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-r from-orange-900/50 to-red-900/50 p-6 rounded-lg border border-orange-700">
+          <h3 className="text-xl font-semibold text-orange-300 mb-4">🚀 Ottimizzazione</h3>
+          <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+            <code className="text-green-400 text-sm">
+              -- Configurazione per performance<br/>
+              PRAGMA synchronous = NORMAL;<br/>
+              PRAGMA cache_size = 10000;<br/>
+              PRAGMA temp_store = memory;<br/>
+              PRAGMA mmap_size = 268435456; -- 256MB<br/>
+              <br/>
+              -- Ottimizza database<br/>
+              PRAGMA optimize;<br/>
+              VACUUM;
+            </code>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 30 - Importare ed Esportare Dati
+  {
+    id: 33,
+    title: "Importare ed Esportare Dati",
+    category: "sqlite",
+    content: (
+      <div className="space-y-6">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-green-300 mb-4">Scambio Dati</h2>
+          <p className="text-gray-400">Portare dati dentro e fuori dal database</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-blue-900/50 to-cyan-900/50 p-6 rounded-lg border border-blue-700">
+            <h3 className="text-xl font-semibold text-blue-300 mb-4">📥 Importare CSV</h3>
+            <div className="space-y-3">
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">
+                  .mode csv<br/>
+                  .import libri.csv libri
+                </code>
+                <div className="text-gray-400 text-xs mt-1">Importa da file CSV</div>
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">
+                  .separator "|"<br/>
+                  .import dati.txt tabella
+                </code>
+                <div className="text-gray-400 text-xs mt-1">Separatore personalizzato</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 p-6 rounded-lg border border-green-700">
+            <h3 className="text-xl font-semibold text-green-300 mb-4">📤 Esportare Dati</h3>
+            <div className="space-y-3">
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">
+                  .headers on<br/>
+                  .mode csv<br/>
+                  .output export.csv<br/>
+                  SELECT * FROM libri;
+                </code>
+                <div className="text-gray-400 text-xs mt-1">Esporta in CSV</div>
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">
+                  .mode json<br/>
+                  .output dati.json<br/>
+                  SELECT * FROM utenti;
+                </code>
+                <div className="text-gray-400 text-xs mt-1">Esporta in JSON</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-br from-purple-900/50 to-indigo-900/50 p-6 rounded-lg border border-purple-700">
+          <h3 className="text-xl font-semibold text-purple-300 mb-4">🔧 Modalità di Output</h3>
+          <div className="grid grid-cols-2 gap-4 text-sm">
+            <div className="space-y-2 text-gray-300">
+              <div><code className="text-blue-400">.mode csv</code> - Comma separated</div>
+              <div><code className="text-green-400">.mode json</code> - Formato JSON</div>
+              <div><code className="text-purple-400">.mode html</code> - Tabella HTML</div>
+              <div><code className="text-yellow-400">.mode table</code> - Tabella ASCII</div>
+            </div>
+            <div className="space-y-2 text-gray-300">
+              <div><code className="text-red-400">.mode tabs</code> - Tab separated</div>
+              <div><code className="text-cyan-400">.mode insert</code> - INSERT SQL</div>
+              <div><code className="text-orange-400">.mode markdown</code> - Markdown</div>
+              <div><code className="text-pink-400">.mode quote</code> - Con virgolette</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-r from-orange-900/50 to-yellow-900/50 p-6 rounded-lg border border-orange-700">
+          <h3 className="text-xl font-semibold text-orange-300 mb-4">📋 Esempio Completo</h3>
+          <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+            <code className="text-green-400 text-sm">
+              -- Preparare l'esportazione<br/>
+              .headers on<br/>
+              .mode csv<br/>
+              .output prestiti_report.csv<br/>
+              <br/>
+              -- Query per il report<br/>
+              SELECT u.nome, u.cognome, l.titolo, <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p.data_prestito, p.data_restituzione<br/>
+              FROM prestiti p<br/>
+              JOIN utenti u ON p.utente_id = u.id<br/>
+              JOIN libri l ON p.libro_id = l.id<br/>
+              ORDER BY p.data_prestito DESC;<br/>
+              <br/>
+              -- Ripristina output normale<br/>
+              .output stdout<br/>
+              .mode table
+            </code>
+          </div>
+        </div>
+      </div>
+    )
+  }
+];

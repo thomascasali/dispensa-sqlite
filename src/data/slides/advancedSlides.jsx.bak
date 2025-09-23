@@ -1,0 +1,670 @@
+import React from 'react';
+import { Zap, Shield, Search, BarChart3, Database, Lock, AlertCircle } from 'lucide-react';
+
+export const advancedSlides = [
+  // Slide 15 - Funzioni Aggregate
+  {
+    id: 17,
+    title: "Funzioni Aggregate",
+    category: "advanced",
+    content: (
+      <div className="space-y-6">
+        <div className="text-center">
+          <BarChart3 size={64} className="text-red-400 mb-4 mx-auto" />
+          <h2 className="text-3xl font-bold text-red-300 mb-4">Calcoli sui Dati</h2>
+          <p className="text-gray-400">Statistiche e riassunti automatici</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-blue-900/50 to-indigo-900/50 p-6 rounded-lg border border-blue-700">
+            <h3 className="text-xl font-semibold text-blue-300 mb-4">📊 Funzioni Base</h3>
+            <div className="space-y-3">
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">
+                  SELECT COUNT(*) FROM libri;
+                </code>
+                <div className="text-gray-400 text-xs mt-1">Conta tutti i libri</div>
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">
+                  SELECT AVG(anno_pubblicazione) FROM libri;
+                </code>
+                <div className="text-gray-400 text-xs mt-1">Anno medio di pubblicazione</div>
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">
+                  SELECT MAX(anno_pubblicazione) FROM libri;
+                </code>
+                <div className="text-gray-400 text-xs mt-1">Libro più recente</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 p-6 rounded-lg border border-green-700">
+            <h3 className="text-xl font-semibold text-green-300 mb-4">🔧 Funzioni Disponibili</h3>
+            <div className="space-y-2 text-gray-300 text-sm">
+              <div><code className="text-blue-400">COUNT()</code> - Conta righe</div>
+              <div><code className="text-purple-400">SUM()</code> - Somma valori</div>
+              <div><code className="text-green-400">AVG()</code> - Media</div>
+              <div><code className="text-yellow-400">MIN()</code> - Valore minimo</div>
+              <div><code className="text-red-400">MAX()</code> - Valore massimo</div>
+              <div><code className="text-cyan-400">GROUP_CONCAT()</code> - Concatena</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-br from-purple-900/50 to-pink-900/50 p-6 rounded-lg border border-purple-700">
+          <h3 className="text-xl font-semibold text-purple-300 mb-4">📈 GROUP BY</h3>
+          <div className="space-y-4">
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <div className="text-sm text-gray-400 mb-2">Libri per genere:</div>
+              <code className="text-green-400 text-sm">
+                SELECT genere, COUNT(*) as totale<br/>
+                FROM libri<br/>
+                GROUP BY genere<br/>
+                ORDER BY totale DESC;
+              </code>
+            </div>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <div className="text-sm text-gray-400 mb-2">Prestiti per utente:</div>
+              <code className="text-green-400 text-sm">
+                SELECT u.nome, u.cognome, COUNT(p.id) as prestiti<br/>
+                FROM utenti u<br/>
+                LEFT JOIN prestiti p ON u.id = p.utente_id<br/>
+                GROUP BY u.id, u.nome, u.cognome;
+              </code>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 16 - JOIN
+  {
+    id: 18,
+    title: "JOIN - Collegare Tabelle",
+    category: "advanced",
+    content: (
+      <div className="space-y-6">
+        <div className="text-center">
+          <Database size={64} className="text-red-400 mb-4 mx-auto" />
+          <h2 className="text-3xl font-bold text-red-300 mb-4">Combinare Dati</h2>
+          <p className="text-gray-400">Il vero potere dei database relazionali</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-blue-900/50 to-cyan-900/50 p-6 rounded-lg border border-blue-700">
+            <h3 className="text-xl font-semibold text-blue-300 mb-4">🔗 INNER JOIN</h3>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                SELECT u.nome, l.titolo, p.data_prestito<br/>
+                FROM prestiti p<br/>
+                INNER JOIN utenti u ON p.utente_id = u.id<br/>
+                INNER JOIN libri l ON p.libro_id = l.id;
+              </code>
+            </div>
+            <div className="text-gray-400 text-sm mt-2">
+              Solo record che hanno corrispondenza in entrambe le tabelle
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-green-900/50 to-teal-900/50 p-6 rounded-lg border border-green-700">
+            <h3 className="text-xl font-semibold text-green-300 mb-4">🔄 LEFT JOIN</h3>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                SELECT u.nome, u.cognome, COUNT(p.id) as prestiti<br/>
+                FROM utenti u<br/>
+                LEFT JOIN prestiti p ON u.id = p.utente_id<br/>
+                GROUP BY u.id;
+              </code>
+            </div>
+            <div className="text-gray-400 text-sm mt-2">
+              Tutti gli utenti, anche quelli senza prestiti
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-br from-purple-900/50 to-indigo-900/50 p-6 rounded-lg border border-purple-700">
+          <h3 className="text-xl font-semibold text-purple-300 mb-4">📚 Esempio Complesso</h3>
+          <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+            <div className="text-sm text-gray-400 mb-2">Chi ha in prestito libri di Fantasy?</div>
+            <code className="text-green-400 text-sm">
+              SELECT DISTINCT u.nome, u.cognome, u.email<br/>
+              FROM utenti u<br/>
+              JOIN prestiti p ON u.id = p.utente_id<br/>
+              JOIN libri l ON p.libro_id = l.id<br/>
+              WHERE l.genere = 'Fantasy'<br/>
+              AND p.restituito = 0<br/>
+              ORDER BY u.cognome, u.nome;
+            </code>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-r from-orange-900/50 to-red-900/50 p-6 rounded-lg border border-orange-700">
+          <h3 className="text-xl font-semibold text-orange-300 mb-3">🎯 Tipi di JOIN</h3>
+          <div className="grid grid-cols-2 gap-4 text-sm text-gray-300">
+            <div>
+              <strong className="text-blue-400">INNER JOIN:</strong> Solo corrispondenze<br/>
+              <strong className="text-green-400">LEFT JOIN:</strong> Tutto da sinistra<br/>
+              <strong className="text-purple-400">RIGHT JOIN:</strong> Tutto da destra<br/>
+              <strong className="text-yellow-400">FULL JOIN:</strong> Tutto da entrambi
+            </div>
+            <div className="text-gray-400">
+              SQLite supporta solo<br/>
+              INNER JOIN e LEFT JOIN.<br/>
+              Gli altri si possono simulare<br/>
+              con UNION e subcquery.
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 17 - Subquery
+  {
+    id: 20,
+    title: "Subquery - Query Annidate",
+    category: "advanced",
+    content: (
+      <div className="space-y-6">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-red-300 mb-4">Query dentro Query</h2>
+          <p className="text-gray-400">Risolvere problemi complessi step by step</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-blue-900/50 to-indigo-900/50 p-6 rounded-lg border border-blue-700">
+            <h3 className="text-xl font-semibold text-blue-300 mb-4">🔍 Subquery in WHERE</h3>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                SELECT titolo, autore<br/>
+                FROM libri<br/>
+                WHERE anno_pubblicazione = (<br/>
+                &nbsp;&nbsp;SELECT MAX(anno_pubblicazione)<br/>
+                &nbsp;&nbsp;FROM libri<br/>
+                );
+              </code>
+            </div>
+            <div className="text-gray-400 text-sm mt-2">
+              Trova il libro più recente
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 p-6 rounded-lg border border-green-700">
+            <h3 className="text-xl font-semibold text-green-300 mb-4">📊 Subquery in SELECT</h3>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                SELECT u.nome, u.cognome,<br/>
+                &nbsp;&nbsp;(SELECT COUNT(*)<br/>
+                &nbsp;&nbsp;&nbsp;FROM prestiti p<br/>
+                &nbsp;&nbsp;&nbsp;WHERE p.utente_id = u.id) as prestiti<br/>
+                FROM utenti u;
+              </code>
+            </div>
+            <div className="text-gray-400 text-sm mt-2">
+              Conta prestiti per ogni utente
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-br from-purple-900/50 to-pink-900/50 p-6 rounded-lg border border-purple-700">
+          <h3 className="text-xl font-semibold text-purple-300 mb-4">🎯 EXISTS e IN</h3>
+          <div className="space-y-4">
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <div className="text-sm text-gray-400 mb-2">Utenti che hanno fatto prestiti:</div>
+              <code className="text-green-400 text-sm">
+                SELECT nome, cognome FROM utenti u<br/>
+                WHERE EXISTS (<br/>
+                &nbsp;&nbsp;SELECT 1 FROM prestiti p<br/>
+                &nbsp;&nbsp;WHERE p.utente_id = u.id<br/>
+                );
+              </code>
+            </div>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <div className="text-sm text-gray-400 mb-2">Libri mai prestati:</div>
+              <code className="text-green-400 text-sm">
+                SELECT titolo FROM libri<br/>
+                WHERE id NOT IN (<br/>
+                &nbsp;&nbsp;SELECT DISTINCT libro_id<br/>
+                &nbsp;&nbsp;FROM prestiti<br/>
+                &nbsp;&nbsp;WHERE libro_id IS NOT NULL<br/>
+                );
+              </code>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 20 - Indici e Performance
+  {
+    id: 20,
+    title: "Indici e Performance",
+    category: "advanced",
+    content: (
+      <div className="space-y-6">
+        <div className="text-center">
+          <Zap size={64} className="text-red-400 mb-4 mx-auto" />
+          <h2 className="text-3xl font-bold text-red-300 mb-4">Velocizzare le Query</h2>
+          <p className="text-gray-400">Ottimizzazione e indici strategici</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-blue-900/50 to-cyan-900/50 p-6 rounded-lg border border-blue-700">
+            <h3 className="text-xl font-semibold text-blue-300 mb-4">📈 Creare Indici</h3>
+            <div className="space-y-3">
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">
+                  CREATE INDEX idx_autore ON libri(autore);
+                </code>
+                <div className="text-gray-400 text-xs mt-1">Indice su singola colonna</div>
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">
+                  CREATE INDEX idx_email ON utenti(email);
+                </code>
+                <div className="text-gray-400 text-xs mt-1">Perfetto per ricerche email</div>
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">
+                  CREATE INDEX idx_prestito ON prestiti(utente_id, data_prestito);
+                </code>
+                <div className="text-gray-400 text-xs mt-1">Indice composto</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 p-6 rounded-lg border border-green-700">
+            <h3 className="text-xl font-semibold text-green-300 mb-4">✅ Quando Usare Indici</h3>
+            <ul className="space-y-2 text-gray-300 text-sm">
+              <li>• Colonne usate spesso in WHERE</li>
+              <li>• Colonne per ORDER BY</li>
+              <li>• Chiavi esterne per JOIN</li>
+              <li>• Colonne UNIQUE</li>
+              <li>• Ricerche frequenti</li>
+            </ul>
+            <div className="mt-4 p-3 bg-red-900/30 rounded">
+              <div className="text-red-300 font-semibold text-sm">⚠️ Attenzione:</div>
+              <div className="text-red-200 text-xs">
+                Gli indici rallentano INSERT/UPDATE/DELETE
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-br from-purple-900/50 to-indigo-900/50 p-6 rounded-lg border border-purple-700">
+          <h3 className="text-xl font-semibold text-purple-300 mb-4">🔧 Gestione Indici</h3>
+          <div className="space-y-3">
+            <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                -- Lista tutti gli indici<br/>
+                .indexes<br/><br/>
+                -- Schema di un indice<br/>
+                .schema idx_autore<br/><br/>
+                -- Elimina indice<br/>
+                DROP INDEX idx_autore;
+              </code>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-r from-orange-900/50 to-yellow-900/50 p-6 rounded-lg border border-orange-700">
+          <h3 className="text-xl font-semibold text-orange-300 mb-3">📊 Analisi Performance</h3>
+          <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+            <code className="text-green-400 text-sm">
+              EXPLAIN QUERY PLAN<br/>
+              SELECT * FROM libri WHERE autore = 'Tolkien';
+            </code>
+          </div>
+          <div className="text-gray-400 text-sm mt-2">
+            Mostra come SQLite eseguirà la query e se userà indici
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 31 - Views
+  {
+    id: 31,
+    title: "Views - Viste Virtuali",
+    category: "advanced",
+    content: (
+      <div className="space-y-6">
+        <div className="bg-purple-50 p-6 rounded-lg border border-purple-200">
+          <h3 className="text-xl font-bold text-purple-800 mb-4">🔍 Cos'è una Vista?</h3>
+          <p className="text-purple-700 mb-4">
+            Una vista è una tabella virtuale basata su una query. Non memorizza dati, ma presenta i dati di altre tabelle.
+          </p>
+          <div className="bg-gray-800 text-green-400 p-4 rounded text-sm">
+            <code>
+              CREATE VIEW vista_prestiti AS<br/>
+              SELECT p.id, l.titolo, u.nome, u.cognome, p.data_prestito<br/>
+              FROM prestiti p<br/>
+              JOIN libri l ON p.libro_id = l.id<br/>
+              JOIN utenti u ON p.utente_id = u.id;
+            </code>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-green-50 p-4 rounded-lg">
+            <h4 className="font-semibold text-green-800 mb-3">Vantaggi</h4>
+            <ul className="space-y-1 text-sm text-green-700">
+              <li>• Semplifica query complesse</li>
+              <li>• Nasconde complessità</li>
+              <li>• Riutilizzabile</li>
+              <li>• Controllo accesso dati</li>
+            </ul>
+          </div>
+          <div className="bg-blue-50 p-4 rounded-lg">
+            <h4 className="font-semibold text-blue-800 mb-3">Utilizzo</h4>
+            <div className="bg-gray-800 text-green-400 p-3 rounded text-xs">
+              <code>
+                SELECT * FROM vista_prestiti<br/>
+                WHERE nome = 'Mario';<br/><br/>
+                DROP VIEW vista_prestiti;
+              </code>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 32 - Triggers
+  {
+    id: 32,
+    title: "Triggers - Automazione",
+    category: "advanced",
+    content: (
+      <div className="space-y-6">
+        <div className="bg-red-50 p-6 rounded-lg border border-red-200">
+          <h3 className="text-xl font-bold text-red-800 mb-4">⚡ Triggers Automatici</h3>
+          <p className="text-red-700 mb-4">
+            I trigger sono procedure che si eseguono automaticamente in risposta a eventi (INSERT, UPDATE, DELETE).
+          </p>
+          <div className="bg-gray-800 text-green-400 p-4 rounded text-sm">
+            <code>
+              CREATE TRIGGER aggiorna_disponibilita<br/>
+              AFTER INSERT ON prestiti<br/>
+              BEGIN<br/>
+              &nbsp;&nbsp;UPDATE libri SET disponibile = 0<br/>
+              &nbsp;&nbsp;WHERE id = NEW.libro_id;<br/>
+              END;
+            </code>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-orange-50 p-4 rounded-lg">
+            <h4 className="font-semibold text-orange-800 mb-3">Tipi di Trigger</h4>
+            <div className="space-y-2 text-sm text-orange-700">
+              <div><code>BEFORE INSERT/UPDATE/DELETE</code></div>
+              <div><code>AFTER INSERT/UPDATE/DELETE</code></div>
+              <div><code>INSTEAD OF</code> (per viste)</div>
+            </div>
+          </div>
+          <div className="bg-yellow-50 p-4 rounded-lg">
+            <h4 className="font-semibold text-yellow-800 mb-3">Gestione</h4>
+            <div className="bg-gray-800 text-green-400 p-3 rounded text-xs">
+              <code>
+                -- Lista trigger<br/>
+                .schema<br/><br/>
+                -- Elimina trigger<br/>
+                DROP TRIGGER aggiorna_disponibilita;
+              </code>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 34 - JSON in SQLite
+  {
+    id: 34,
+    title: "SQLite e JSON",
+    category: "advanced",
+    content: (
+      <div className="space-y-6">
+        <div className="bg-indigo-50 p-6 rounded-lg border border-indigo-200">
+          <h3 className="text-xl font-bold text-indigo-800 mb-4">📋 Supporto JSON</h3>
+          <p className="text-indigo-700 mb-4">
+            SQLite supporta nativamente il formato JSON con funzioni specifiche per manipolare dati strutturati.
+          </p>
+          <div className="bg-gray-800 text-green-400 p-4 rounded text-sm">
+            <code>
+              CREATE TABLE prodotti (<br/>
+              &nbsp;&nbsp;id INTEGER PRIMARY KEY,<br/>
+              &nbsp;&nbsp;nome TEXT,<br/>
+              &nbsp;&nbsp;dettagli JSON<br/>
+              );
+            </code>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-blue-50 p-4 rounded-lg">
+            <h4 className="font-semibold text-blue-800 mb-3">Inserimento JSON</h4>
+            <div className="bg-gray-800 text-green-400 p-3 rounded text-xs">
+              <code>
+                INSERT INTO prodotti VALUES (<br/>
+                &nbsp;&nbsp;1, 'Laptop',<br/>
+                &nbsp;&nbsp;{'\'{"marca": "Apple", "ram": "16GB"}\''}<br/>
+                );
+              </code>
+            </div>
+          </div>
+          <div className="bg-green-50 p-4 rounded-lg">
+            <h4 className="font-semibold text-green-800 mb-3">Query JSON</h4>
+            <div className="bg-gray-800 text-green-400 p-3 rounded text-xs">
+              <code>
+                SELECT nome, json_extract(dettagli, '$.marca')<br/>
+                FROM prodotti<br/>
+                WHERE json_extract(dettagli, '$.ram') = '16GB';
+              </code>
+            </div>
+          </div>
+        </div>
+        <div className="bg-purple-50 p-4 rounded-lg">
+          <h4 className="font-semibold text-purple-800 mb-3">Funzioni JSON Utili</h4>
+          <div className="grid grid-cols-2 gap-2 text-sm text-purple-700">
+            <div><code>json_extract()</code> - Estrae valori</div>
+            <div><code>json_valid()</code> - Valida JSON</div>
+            <div><code>json_array()</code> - Crea array</div>
+            <div><code>json_object()</code> - Crea oggetti</div>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 35 - Backup e Recovery
+  {
+    id: 35,
+    title: "Backup e Ripristino",
+    category: "advanced",
+    content: (
+      <div className="space-y-6">
+        <div className="bg-emerald-50 p-6 rounded-lg border border-emerald-200">
+          <h3 className="text-xl font-bold text-emerald-800 mb-4">💾 Gestione Backup</h3>
+          <p className="text-emerald-700 mb-4">
+            SQLite offre diversi metodi per creare backup e ripristinare i database.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-blue-50 p-4 rounded-lg">
+            <h4 className="font-semibold text-blue-800 mb-3">Comando .backup</h4>
+            <div className="bg-gray-800 text-green-400 p-3 rounded text-sm">
+              <code>
+                -- Backup completo<br/>
+                .backup biblioteca_backup.db<br/><br/>
+                -- Ripristino<br/>
+                .restore biblioteca_backup.db
+              </code>
+            </div>
+          </div>
+          <div className="bg-purple-50 p-4 rounded-lg">
+            <h4 className="font-semibold text-purple-800 mb-3">Export SQL</h4>
+            <div className="bg-gray-800 text-green-400 p-3 rounded text-sm">
+              <code>
+                -- Export schema e dati<br/>
+                .output backup.sql<br/>
+                .dump<br/>
+                .output stdout
+              </code>
+            </div>
+          </div>
+        </div>
+        <div className="bg-yellow-50 p-4 rounded-lg">
+          <h4 className="font-semibold text-yellow-800 mb-3">🔄 Strategie di Backup</h4>
+          <ul className="space-y-1 text-sm text-yellow-700">
+            <li>• <strong>Backup completo:</strong> Copia dell'intero database</li>
+            <li>• <strong>Backup incrementale:</strong> Solo le modifiche recenti</li>
+            <li>• <strong>Export SQL:</strong> Script ricostruibile</li>
+            <li>• <strong>Copia file:</strong> Semplice copia del file .db</li>
+          </ul>
+        </div>
+        <div className="bg-red-50 p-4 rounded-lg">
+          <h4 className="font-semibold text-red-800 mb-2">⚠️ Importante</h4>
+          <p className="text-red-700 text-sm">
+            Effettua sempre backup prima di modifiche importanti e testa il ripristino periodicamente.
+          </p>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 36 - Performance e Ottimizzazione
+  {
+    id: 36,
+    title: "Performance e Ottimizzazione",
+    category: "advanced",
+    content: (
+      <div className="space-y-6">
+        <div className="bg-teal-50 p-6 rounded-lg border border-teal-200">
+          <h3 className="text-xl font-bold text-teal-800 mb-4">🚀 Ottimizzazione Query</h3>
+          <p className="text-teal-700 mb-4">
+            Tecniche per migliorare le performance delle query in SQLite.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-green-50 p-4 rounded-lg">
+            <h4 className="font-semibold text-green-800 mb-3">✅ Best Practices</h4>
+            <ul className="space-y-1 text-sm text-green-700">
+              <li>• Usa indici su colonne WHERE</li>
+              <li>• Limita i risultati con LIMIT</li>
+              <li>• Evita SELECT * quando possibile</li>
+              <li>• Usa EXISTS invece di IN</li>
+              <li>• Analizza con EXPLAIN QUERY PLAN</li>
+            </ul>
+          </div>
+          <div className="bg-red-50 p-4 rounded-lg">
+            <h4 className="font-semibold text-red-800 mb-3">❌ Da Evitare</h4>
+            <ul className="space-y-1 text-sm text-red-700">
+              <li>• Query con LIKE '%pattern%'</li>
+              <li>• Funzioni in WHERE senza indici</li>
+              <li>• Transazioni troppo lunghe</li>
+              <li>• Molti JOIN senza indici</li>
+              <li>• Subquery correlate inefficienti</li>
+            </ul>
+          </div>
+        </div>
+        <div className="bg-blue-50 p-4 rounded-lg">
+          <h4 className="font-semibold text-blue-800 mb-3">🔍 Analisi Performance</h4>
+          <div className="bg-gray-800 text-green-400 p-3 rounded text-sm">
+            <code>
+              EXPLAIN QUERY PLAN<br/>
+              SELECT u.nome, COUNT(*) FROM utenti u<br/>
+              JOIN prestiti p ON u.id = p.utente_id<br/>
+              GROUP BY u.id;
+            </code>
+          </div>
+        </div>
+        <div className="bg-purple-50 p-4 rounded-lg">
+          <h4 className="font-semibold text-purple-800 mb-3">⚙️ Configurazioni</h4>
+          <div className="bg-gray-800 text-green-400 p-3 rounded text-xs">
+            <code>
+              PRAGMA cache_size = 10000;<br/>
+              PRAGMA temp_store = memory;<br/>
+              PRAGMA journal_mode = WAL;<br/>
+              PRAGMA synchronous = NORMAL;
+            </code>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 38 - Sicurezza Database
+  {
+    id: 38,
+    title: "Sicurezza Database",
+    category: "advanced",
+    content: (
+      <div className="space-y-6">
+        <div className="bg-red-50 p-6 rounded-lg border border-red-200">
+          <h3 className="text-xl font-bold text-red-800 mb-4">🔒 Sicurezza SQLite</h3>
+          <p className="text-red-700 mb-4">
+            Pratiche essenziali per proteggere i database SQLite.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-yellow-50 p-4 rounded-lg">
+            <h4 className="font-semibold text-yellow-800 mb-3">⚠️ SQL Injection</h4>
+            <div className="space-y-2 text-sm">
+              <div className="bg-red-100 p-2 rounded">
+                <strong className="text-red-800">❌ Vulnerabile:</strong>
+                <code className="text-xs block mt-1">
+                  "SELECT * FROM utenti WHERE nome = '" + input + "'"
+                </code>
+              </div>
+              <div className="bg-green-100 p-2 rounded">
+                <strong className="text-green-800">✅ Sicuro:</strong>
+                <code className="text-xs block mt-1">
+                  "SELECT * FROM utenti WHERE nome = ?"
+                </code>
+              </div>
+            </div>
+          </div>
+          <div className="bg-blue-50 p-4 rounded-lg">
+            <h4 className="font-semibold text-blue-800 mb-3">🔑 Controllo Accessi</h4>
+            <ul className="space-y-1 text-sm text-blue-700">
+              <li>• Permessi file system</li>
+              <li>• Backup crittografati</li>
+              <li>• Connessioni autenticate</li>
+              <li>• Validazione input</li>
+            </ul>
+          </div>
+        </div>
+        <div className="bg-purple-50 p-4 rounded-lg">
+          <h4 className="font-semibold text-purple-800 mb-3">🛡️ Best Practices</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-purple-700">
+            <ul className="space-y-1">
+              <li>✓ Usa prepared statements</li>
+              <li>✓ Valida sempre gli input</li>
+              <li>✓ Limita privilegi utenti</li>
+            </ul>
+            <ul className="space-y-1">
+              <li>✓ Monitora accessi</li>
+              <li>✓ Backup regolari</li>
+              <li>✓ Aggiorna SQLite</li>
+            </ul>
+          </div>
+        </div>
+        <div className="bg-green-50 p-4 rounded-lg">
+          <h4 className="font-semibold text-green-800 mb-3">🔧 Configurazione Sicura</h4>
+          <div className="bg-gray-800 text-green-400 p-3 rounded text-sm">
+            <code>
+              -- Disabilita estensioni pericolose<br/>
+              PRAGMA trusted_schema = OFF;<br/>
+              -- Limite dimensioni database<br/>
+              PRAGMA max_page_count = 1000000;
+            </code>
+          </div>
+        </div>
+      </div>
+    )
+  }
+];

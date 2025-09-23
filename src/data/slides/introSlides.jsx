@@ -1,0 +1,153 @@
+import React from 'react';
+import { Database, BookOpen, Server } from 'lucide-react';
+
+export const introSlides = [
+  // Slide 1 - Titolo
+  {
+    id: 1,
+    title: "Basi di Dati con SQLite",
+    category: "intro",
+    content: (
+      <div className="flex flex-col items-center justify-center h-full">
+        <Database size={120} className="text-blue-400 mb-8 animate-pulse" />
+        <h1 className="text-6xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
+          Basi di Dati
+        </h1>
+        <p className="text-2xl text-gray-300 mb-8">Corso completo con SQLite</p>
+        <div className="text-center">
+          <p className="text-lg text-gray-400">ITTS Rimini</p>
+          <p className="text-sm text-gray-500 mt-2">prof Thomas Casali</p>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 2 - Programma del Corso
+  {
+    id: 2,
+    title: "Programma del Corso",
+    category: "intro",
+    content: (
+      <div className="space-y-6">
+        <h2 className="text-4xl font-bold mb-8 text-center text-blue-300">Argomenti del Corso</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="bg-gradient-to-br from-blue-800 to-blue-900 p-6 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg">
+            <Database className="text-blue-300 mb-3" size={32} />
+            <h3 className="text-xl font-semibold text-blue-200 mb-2">1. Introduzione</h3>
+            <p className="text-gray-300 text-sm">Dai file ai database moderni</p>
+          </div>
+          <div className="bg-gradient-to-br from-purple-800 to-purple-900 p-6 rounded-lg hover:from-purple-700 hover:to-purple-800 transition-all shadow-lg">
+            <Server className="text-purple-300 mb-3" size={32} />
+            <h3 className="text-xl font-semibold text-purple-200 mb-2">2. DBMS</h3>
+            <p className="text-gray-300 text-sm">Sistemi di gestione database</p>
+          </div>
+          <div className="bg-gradient-to-br from-green-800 to-green-900 p-6 rounded-lg hover:from-green-700 hover:to-green-800 transition-all shadow-lg">
+            <Database className="text-green-300 mb-3" size={32} />
+            <h3 className="text-xl font-semibold text-green-200 mb-2">3. SQLite</h3>
+            <p className="text-gray-300 text-sm">Il nostro DBMS di riferimento</p>
+          </div>
+          <div className="bg-gradient-to-br from-orange-800 to-orange-900 p-6 rounded-lg hover:from-orange-700 hover:to-orange-800 transition-all shadow-lg">
+            <Database className="text-orange-300 mb-3" size={32} />
+            <h3 className="text-xl font-semibold text-orange-200 mb-2">4. SQL Base</h3>
+            <p className="text-gray-300 text-sm">Comandi fondamentali</p>
+          </div>
+          <div className="bg-gradient-to-br from-cyan-800 to-cyan-900 p-6 rounded-lg hover:from-cyan-700 hover:to-cyan-800 transition-all shadow-lg">
+            <BookOpen className="text-cyan-300 mb-3" size={32} />
+            <h3 className="text-xl font-semibold text-cyan-200 mb-2">5. Pratica</h3>
+            <p className="text-gray-300 text-sm">Progetti biblioteca e scuola</p>
+          </div>
+          <div className="bg-gradient-to-br from-red-800 to-red-900 p-6 rounded-lg hover:from-red-700 hover:to-red-800 transition-all shadow-lg">
+            <Database className="text-red-300 mb-3" size={32} />
+            <h3 className="text-xl font-semibold text-red-200 mb-2">6. Avanzato</h3>
+            <p className="text-gray-300 text-sm">Views, triggers, performance</p>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 46 - Conclusioni e Prossimi Passi (ULTIMA SLIDE)
+  {
+    id: 46,
+    title: "Conclusioni e Prossimi Passi",
+    category: "intro",
+    content: (
+      <div className="space-y-6">
+        <div className="bg-gradient-to-r from-blue-900/50 to-purple-900/50 p-6 rounded-lg border border-blue-700">
+          <h3 className="text-2xl font-bold text-blue-300 mb-4">🎓 Congratulazioni!</h3>
+          <p className="text-gray-300 text-lg mb-4">
+            Hai completato il corso di SQLite per Basi di Dati!
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-green-900/50 to-green-800/50 p-4 rounded-lg border border-green-700">
+            <h4 className="font-semibold text-green-300 mb-3">✅ Cosa Hai Imparato</h4>
+            <ul className="space-y-1 text-sm text-gray-300">
+              <li>• Concetti fondamentali database</li>
+              <li>• Sintassi SQL completa</li>
+              <li>• Progettazione tabelle</li>
+              <li>• Query avanzate e JOIN</li>
+              <li>• Ottimizzazione performance</li>
+              <li>• Views, Triggers, Transazioni</li>
+              <li>• Sicurezza e best practices</li>
+            </ul>
+          </div>
+
+          <div className="bg-gradient-to-br from-purple-900/50 to-purple-800/50 p-4 rounded-lg border border-purple-700">
+            <h4 className="font-semibold text-purple-300 mb-3">🚀 Prossimi Passi</h4>
+            <ul className="space-y-1 text-sm text-gray-300">
+              <li>• Realizza i progetti pratici</li>
+              <li>• Studia MySQL/PostgreSQL</li>
+              <li>• Approfondisci NoSQL</li>
+              <li>• Impara ORM (Object-Relational Mapping)</li>
+              <li>• Database design patterns</li>
+              <li>• Big Data e Analytics</li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-br from-yellow-900/50 to-orange-900/50 p-6 rounded-lg border border-yellow-700">
+          <h4 className="font-semibold text-yellow-300 mb-4">📚 Risorse per Continuare</h4>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-300">
+            <div>
+              <strong>Documentazione:</strong>
+              <ul className="mt-1 space-y-1">
+                <li>• SQLite.org</li>
+                <li>• W3Schools SQL</li>
+                <li>• SQL Tutorial</li>
+              </ul>
+            </div>
+            <div>
+              <strong>Strumenti:</strong>
+              <ul className="mt-1 space-y-1">
+                <li>• DB Browser for SQLite</li>
+                <li>• DBeaver</li>
+                <li>• SQLite Studio</li>
+              </ul>
+            </div>
+            <div>
+              <strong>Pratica:</strong>
+              <ul className="mt-1 space-y-1">
+                <li>• SQLBolt</li>
+                <li>• HackerRank SQL</li>
+                <li>• LeetCode Database</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-br from-blue-900/50 to-indigo-900/50 p-6 rounded-lg border border-blue-700 text-center">
+          <h4 className="font-semibold text-blue-300 mb-3">🎯 Ricorda</h4>
+          <p className="text-gray-300 italic">
+            "La pratica rende perfetti. Continua a sperimentare con database reali e progetti personali!"
+          </p>
+          <div className="mt-4 text-sm text-blue-300">
+            <strong>ITTS Rimini - Corso Basi di Dati</strong><br/>
+            Anno Scolastico 2024/2025
+          </div>
+        </div>
+      </div>
+    )
+  }
+];

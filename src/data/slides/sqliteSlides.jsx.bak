@@ -1,0 +1,412 @@
+import React from 'react';
+import { Database, FileText, Settings, Monitor, Download, ExternalLink } from 'lucide-react';
+
+export const sqliteSlides = [
+  // Slide 5 - Introduzione a SQLite
+  {
+    id: 5,
+    title: "SQLite: Il Nostro DBMS",
+    category: "sqlite",
+    content: (
+      <div className="space-y-8">
+        <div className="text-center">
+          <Database size={80} className="text-green-400 mb-4 mx-auto animate-bounce" />
+          <h2 className="text-4xl font-bold text-green-300 mb-4">SQLite</h2>
+          <p className="text-gray-400 text-lg">Il database più diffuso al mondo</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 p-6 rounded-lg border border-green-700">
+            <h3 className="text-xl font-semibold text-green-300 mb-4">✨ Caratteristiche</h3>
+            <ul className="space-y-2 text-gray-300">
+              <li>• <strong>Serverless:</strong> Nessun server da configurare</li>
+              <li>• <strong>Self-contained:</strong> Una sola libreria</li>
+              <li>• <strong>Zero-configuration:</strong> Funziona subito</li>
+              <li>• <strong>Cross-platform:</strong> Ovunque</li>
+              <li>• <strong>Piccolo:</strong> &lt; 1MB di spazio</li>
+              <li>• <strong>Veloce:</strong> Ottimizzato per performance</li>
+            </ul>
+          </div>
+
+          <div className="bg-gradient-to-br from-blue-900/50 to-indigo-900/50 p-6 rounded-lg border border-blue-700">
+            <h3 className="text-xl font-semibold text-blue-300 mb-4">🎯 Quando Usarlo</h3>
+            <div className="space-y-3 text-gray-300">
+              <div className="bg-green-800/30 p-3 rounded">
+                <div className="font-semibold text-green-300">✅ Ideale per:</div>
+                <div className="text-sm">App mobile, desktop, prototopi, analisi dati</div>
+              </div>
+              <div className="bg-yellow-800/30 p-3 rounded">
+                <div className="font-semibold text-yellow-300">⚠️ Limitato per:</div>
+                <div className="text-sm">Server web con molti utenti simultanei</div>
+              </div>
+              <div className="bg-red-800/30 p-3 rounded">
+                <div className="font-semibold text-red-300">❌ Non per:</div>
+                <div className="text-sm">Sistemi enterprise con migliaia di utenti</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-r from-purple-900/50 to-pink-900/50 p-6 rounded-lg border border-purple-700">
+          <h3 className="text-xl font-semibold text-purple-300 mb-3 flex items-center">
+            <FileText className="mr-2" size={24} />
+            Un File, Un Database
+          </h3>
+          <p className="text-gray-300">
+            Con SQLite, ogni database è semplicemente un file con estensione <code className="bg-gray-800 px-2 py-1 rounded text-green-400">.db</code> o <code className="bg-gray-800 px-2 py-1 rounded text-green-400">.sqlite</code>.
+            Facile da trasferire, copiare e condividere!
+          </p>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 6 - Installazione e Primi Passi
+  {
+    id: 6,
+    title: "Installazione e Primi Passi",
+    category: "sqlite",
+    content: (
+      <div className="space-y-6">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-green-300 mb-4">Iniziamo con SQLite</h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-gradient-to-br from-blue-900/50 to-blue-800/50 p-6 rounded-lg border border-blue-700">
+            <h3 className="text-xl font-semibold text-blue-300 mb-4">🪟 Installazione Windows</h3>
+            <div className="space-y-3">
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <div className="text-sm text-gray-400 mb-2">Opzione 1 - WinGet:</div>
+                <code className="text-green-400 text-sm">winget install SQLite.SQLite</code>
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <div className="text-sm text-gray-400 mb-2">Opzione 2 - Download:</div>
+                <div className="text-xs text-gray-300">
+                  1. Vai su sqlite.org/download.html<br/>
+                  2. Scarica sqlite-tools-win32<br/>
+                  3. Estrai e aggiungi al PATH
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-purple-900/50 to-purple-800/50 p-6 rounded-lg border border-purple-700">
+            <h3 className="text-xl font-semibold text-purple-300 mb-4">🍎 Installazione macOS</h3>
+            <div className="space-y-3">
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <div className="text-sm text-gray-400 mb-2">Con Homebrew:</div>
+                <code className="text-green-400 text-sm">brew install sqlite</code>
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <div className="text-sm text-gray-400 mb-2">Già incluso:</div>
+                <div className="text-xs text-gray-300">
+                  SQLite è preinstallato su macOS.<br/>
+                  Prova: <code className="text-green-400">sqlite3 --version</code>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-green-900/50 to-green-800/50 p-6 rounded-lg border border-green-700">
+            <h3 className="text-xl font-semibold text-green-300 mb-4">🐧 Installazione Linux</h3>
+            <div className="space-y-3">
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <div className="text-sm text-gray-400 mb-2">Ubuntu/Debian:</div>
+                <code className="text-green-400 text-sm">sudo apt install sqlite3</code>
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <div className="text-sm text-gray-400 mb-2">CentOS/RHEL:</div>
+                <code className="text-green-400 text-sm">sudo yum install sqlite</code>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          <div className="bg-gradient-to-br from-cyan-900/50 to-cyan-800/50 p-6 rounded-lg border border-cyan-700">
+            <h3 className="text-xl font-semibold text-cyan-300 mb-4">🚀 Primi Comandi</h3>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <div className="text-green-400 font-mono text-sm space-y-2">
+                <div><span className="text-gray-500"># Crea/apre un database</span></div>
+                <div>sqlite3 scuola.db</div>
+                <div className="mt-3"><span className="text-gray-500"># Comandi utili</span></div>
+                <div>.help</div>
+                <div>.tables</div>
+                <div>.schema</div>
+                <div>.quit</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-orange-900/50 to-red-900/50 p-6 rounded-lg border border-orange-700">
+            <h3 className="text-xl font-semibold text-orange-300 mb-4">🎯 Prima Sessione</h3>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <div className="text-green-400 font-mono text-sm space-y-1">
+                <div><span className="text-yellow-400">$</span> sqlite3 biblioteca.db</div>
+                <div><span className="text-blue-400">sqlite&gt;</span> .tables</div>
+                <div><span className="text-blue-400">sqlite&gt;</span> SELECT 'Ciao SQLite!' as messaggio;</div>
+                <div className="text-gray-400">Ciao SQLite!</div>
+                <div><span className="text-blue-400">sqlite&gt;</span> .quit</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 18 - Vincoli e Chiavi
+  {
+    id: 18,
+    title: "Vincoli e Chiavi",
+    category: "sqlite",
+    content: (
+      <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-red-50 p-4 rounded-lg">
+            <h4 className="font-semibold text-red-800 mb-3">Vincoli Principali</h4>
+            <div className="space-y-2 text-sm text-red-700">
+              <div><code>NOT NULL</code> - Campo obbligatorio</div>
+              <div><code>UNIQUE</code> - Valore univoco</div>
+              <div><code>PRIMARY KEY</code> - Chiave primaria</div>
+              <div><code>FOREIGN KEY</code> - Chiave esterna</div>
+              <div><code>CHECK</code> - Controllo personalizzato</div>
+              <div><code>DEFAULT</code> - Valore predefinito</div>
+            </div>
+          </div>
+          <div className="bg-blue-50 p-4 rounded-lg">
+            <h4 className="font-semibold text-blue-800 mb-3">Esempio Pratico</h4>
+            <div className="bg-gray-800 text-green-400 p-3 rounded text-xs">
+              <code>
+                CREATE TABLE prodotti (<br/>
+                &nbsp;&nbsp;id INTEGER PRIMARY KEY,<br/>
+                &nbsp;&nbsp;nome TEXT NOT NULL,<br/>
+                &nbsp;&nbsp;prezzo REAL CHECK(prezzo &lg; 0),<br/>
+                &nbsp;&nbsp;codice TEXT UNIQUE,<br/>
+                &nbsp;&nbsp;disponibile INTEGER DEFAULT 1<br/>
+                );
+              </code>
+            </div>
+          </div>
+        </div>
+        <div className="bg-green-50 p-4 rounded-lg">
+          <h4 className="font-semibold text-green-800 mb-2">🔑 Chiave Primaria</h4>
+          <p className="text-green-700 text-sm">
+            Identifica univocamente ogni riga. In SQLite, se non specificata, viene creata automaticamente una colonna <code>rowid</code>.
+          </p>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 19 - Tipi di Dati SQLite
+  {
+    id: 19,
+    title: "Tipi di Dati in SQLite",
+    category: "sqlite",
+    content: (
+      <div className="space-y-6">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-green-300 mb-4">Sistema di Tipi Dinamico</h2>
+          <p className="text-gray-400">SQLite ha un approccio unico ai tipi di dati</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-blue-900/50 to-blue-800/50 p-6 rounded-lg border border-blue-700">
+            <h3 className="text-xl font-semibold text-blue-300 mb-4">📊 Tipi Principali</h3>
+            <div className="space-y-3">
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-blue-400">INTEGER</code>
+                <div className="text-gray-400 text-sm">Numeri interi (1, 42, -15)</div>
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-purple-400">REAL</code>
+                <div className="text-gray-400 text-sm">Numeri decimali (3.14, -0.5)</div>
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400">TEXT</code>
+                <div className="text-gray-400 text-sm">Stringhe di testo ('Hello', 'SQLite')</div>
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-yellow-400">BLOB</code>
+                <div className="text-gray-400 text-sm">Dati binari (immagini, file)</div>
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-red-400">NULL</code>
+                <div className="text-gray-400 text-sm">Valore mancante/sconosciuto</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 p-6 rounded-lg border border-green-700">
+            <h3 className="text-xl font-semibold text-green-300 mb-4">🔄 Conversioni Automatiche</h3>
+            <div className="space-y-3 text-gray-300 text-sm">
+              <div className="bg-gray-900/30 p-3 rounded">
+                <strong className="text-green-400">'123'</strong> → <strong className="text-blue-400">123</strong><br/>
+                <span className="text-gray-500">Testo numerico → Intero</span>
+              </div>
+              <div className="bg-gray-900/30 p-3 rounded">
+                <strong className="text-blue-400">42</strong> → <strong className="text-green-400">'42'</strong><br/>
+                <span className="text-gray-500">Numero → Testo (se necessario)</span>
+              </div>
+              <div className="bg-gray-900/30 p-3 rounded">
+                <strong className="text-green-400">'3.14'</strong> → <strong className="text-purple-400">3.14</strong><br/>
+                <span className="text-gray-500">Testo decimale → Reale</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-r from-orange-900/50 to-red-900/50 p-6 rounded-lg border border-orange-700">
+          <h3 className="text-xl font-semibold text-orange-300 mb-4">💡 Particolarità SQLite</h3>
+          <div className="text-gray-300">
+            <p className="mb-3">
+              A differenza di altri database, SQLite permette di inserire qualsiasi tipo di dato in qualsiasi colonna!
+            </p>
+            <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                CREATE TABLE esempio (id INTEGER, nome TEXT);<br/>
+                INSERT INTO esempio VALUES ('testo', 42); -- Funziona!
+              </code>
+            </div>
+            <p className="mt-3 text-sm text-orange-200">
+              <strong>Consiglio:</strong> Anche se possibile, è meglio rispettare i tipi dichiarati per mantenere la coerenza.
+            </p>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 7 - DB Browser for SQLite
+  {
+    id: 7,
+    title: "DB Browser for SQLite - Il Nostro Strumento di Laboratorio",
+    category: "sqlite",
+    content: (
+      <div className="space-y-6">
+        <div className="text-center">
+          <Monitor size={80} className="text-blue-400 mb-4 mx-auto animate-pulse" />
+          <h2 className="text-3xl font-bold text-blue-300 mb-4">DB Browser for SQLite</h2>
+          <p className="text-gray-400 text-lg">Interfaccia grafica per gestire database SQLite</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-blue-900/50 to-indigo-900/50 p-6 rounded-lg border border-blue-700">
+            <h3 className="text-xl font-semibold text-blue-300 mb-4 flex items-center">
+              <Download className="mr-2" size={24} />
+              Installazione
+            </h3>
+            <div className="space-y-3">
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <div className="text-sm text-gray-400 mb-2">🪟 Windows:</div>
+                <div className="text-xs text-gray-300">
+                  Scarica il file .msi da sqlitebrowser.org<br/>
+                  Installazione guidata automatica
+                </div>
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <div className="text-sm text-gray-400 mb-2">🍎 macOS:</div>
+                <div className="text-xs text-gray-300">
+                  <code className="text-green-400">brew install --cask db-browser-for-sqlite</code><br/>
+                  oppure scarica il .dmg dal sito
+                </div>
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <div className="text-sm text-gray-400 mb-2">🐧 Linux:</div>
+                <div className="text-xs text-gray-300">
+                  <code className="text-green-400">sudo apt install sqlitebrowser</code><br/>
+                  (Ubuntu/Debian)
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 p-6 rounded-lg border border-green-700">
+            <h3 className="text-xl font-semibold text-green-300 mb-4">✨ Caratteristiche Principali</h3>
+            <div className="space-y-2 text-gray-300 text-sm">
+              <div className="flex items-center">
+                <span className="text-green-400 mr-2">•</span>
+                <strong>Interfaccia visuale</strong> per creare tabelle
+              </div>
+              <div className="flex items-center">
+                <span className="text-green-400 mr-2">•</span>
+                <strong>Editor SQL</strong> con evidenziazione sintassi
+              </div>
+              <div className="flex items-center">
+                <span className="text-green-400 mr-2">•</span>
+                <strong>Visualizzazione dati</strong> in formato tabella
+              </div>
+              <div className="flex items-center">
+                <span className="text-green-400 mr-2">•</span>
+                <strong>Import/Export</strong> CSV, JSON, SQL
+              </div>
+              <div className="flex items-center">
+                <span className="text-green-400 mr-2">•</span>
+                <strong>Schema visuale</strong> delle relazioni
+              </div>
+              <div className="flex items-center">
+                <span className="text-green-400 mr-2">•</span>
+                <strong>Backup e restore</strong> automatici
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-gradient-to-br from-purple-900/50 to-pink-900/50 p-4 rounded-lg border border-purple-700">
+            <h4 className="text-lg font-semibold text-purple-300 mb-3">🗃️ Struttura Database</h4>
+            <div className="text-gray-300 text-sm">
+              Visualizza e modifica lo schema delle tabelle con interfaccia drag &amp; drop
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-cyan-900/50 to-blue-900/50 p-4 rounded-lg border border-cyan-700">
+            <h4 className="text-lg font-semibold text-cyan-300 mb-3">📝 Query SQL</h4>
+            <div className="text-gray-300 text-sm">
+              Editor con completamento automatico e evidenziazione degli errori
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-orange-900/50 to-red-900/50 p-4 rounded-lg border border-orange-700">
+            <h4 className="text-lg font-semibold text-orange-300 mb-3">📊 Dati</h4>
+            <div className="text-gray-300 text-sm">
+              Modifica diretta dei dati con validazione automatica dei tipi
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-r from-yellow-900/50 to-amber-900/50 p-6 rounded-lg border border-yellow-700">
+          <h3 className="text-xl font-semibold text-yellow-300 mb-3 flex items-center">
+            <ExternalLink className="mr-2" size={24} />
+            Perché Lo Usiamo in Laboratorio
+          </h3>
+          <div className="text-gray-300">
+            <p className="mb-3">
+              DB Browser rende SQLite accessibile agli studenti fornendo:
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <strong className="text-yellow-300">✅ Vantaggi didattici:</strong>
+                <ul className="text-sm mt-2 space-y-1">
+                  <li>• Visualizzazione immediata dei risultati</li>
+                  <li>• Correzione degli errori facilitata</li>
+                  <li>• Comprensione delle relazioni tra tabelle</li>
+                </ul>
+              </div>
+              <div>
+                <strong className="text-yellow-300">🎯 Perfetto per:</strong>
+                <ul className="text-sm mt-2 space-y-1">
+                  <li>• Principianti che imparano SQL</li>
+                  <li>• Progetti scolastici e prototipi</li>
+                  <li>• Debugging e analisi dati</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+];

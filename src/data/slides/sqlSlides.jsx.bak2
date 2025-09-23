@@ -1,0 +1,327 @@
+import React from 'react';
+import { Code, Search, AlertCircle, Table } from 'lucide-react';
+
+export const sqlSlides = [
+  // Slide 8 - Introduzione a SQL
+  {
+    id: 8,
+    title: "SQL - Structured Query Language",
+    category: "sql",
+    content: (
+      <div className="space-y-8">
+        <div className="text-center">
+          <Code size={80} className="text-cyan-400 mb-4 mx-auto" />
+          <h2 className="text-4xl font-bold text-cyan-300 mb-4">SQL</h2>
+          <p className="text-gray-400 text-lg">Il linguaggio universale dei database</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-cyan-900/50 to-blue-900/50 p-6 rounded-lg border border-cyan-700">
+            <h3 className="text-xl font-semibold text-cyan-300 mb-4">📋 Caratteristiche SQL</h3>
+            <ul className="space-y-2 text-gray-300">
+              <li>• <strong>Dichiarativo:</strong> Dici cosa vuoi, non come</li>
+              <li>• <strong>Standard:</strong> Stesso linguaggio per tutti i DBMS</li>
+              <li>• <strong>Potente:</strong> Operazioni complesse in poche righe</li>
+              <li>• <strong>Leggibile:</strong> Simile all'inglese</li>
+              <li>• <strong>Versatile:</strong> Per ogni tipo di operazione</li>
+            </ul>
+          </div>
+
+          <div className="bg-gradient-to-br from-purple-900/50 to-pink-900/50 p-6 rounded-lg border border-purple-700">
+            <h3 className="text-xl font-semibold text-purple-300 mb-4">🔧 Categorie di Comandi</h3>
+            <div className="space-y-3">
+              <div className="bg-blue-800/30 p-2 rounded">
+                <strong className="text-blue-300">DDL</strong> - Data Definition Language
+                <div className="text-sm text-gray-400">CREATE, ALTER, DROP</div>
+              </div>
+              <div className="bg-green-800/30 p-2 rounded">
+                <strong className="text-green-300">DML</strong> - Data Manipulation Language
+                <div className="text-sm text-gray-400">INSERT, UPDATE, DELETE</div>
+              </div>
+              <div className="bg-yellow-800/30 p-2 rounded">
+                <strong className="text-yellow-300">DQL</strong> - Data Query Language
+                <div className="text-sm text-gray-400">SELECT</div>
+              </div>
+              <div className="bg-red-800/30 p-2 rounded">
+                <strong className="text-red-300">DCL</strong> - Data Control Language
+                <div className="text-sm text-gray-400">GRANT, REVOKE</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-r from-green-900/50 to-teal-900/50 p-6 rounded-lg border border-green-700">
+          <h3 className="text-xl font-semibold text-green-300 mb-3">💡 Il Primo Comando</h3>
+          <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+            <code className="text-green-400 text-lg">SELECT 'Hello World' AS saluto;</code>
+          </div>
+          <p className="text-gray-400 mt-3">Questo comando restituisce semplicemente il testo "Hello World" con l'alias "saluto".</p>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 9 - CREATE TABLE
+  {
+    id: 9,
+    title: "CREATE TABLE - Creare Tabelle",
+    category: "sql",
+    content: (
+      <div className="space-y-6">
+        <div className="text-center">
+          <Table size={64} className="text-cyan-400 mb-4 mx-auto" />
+          <h2 className="text-3xl font-bold text-cyan-300 mb-4">Creazione Tabelle</h2>
+          <p className="text-gray-400">La base di tutto: definire la struttura dei dati</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-cyan-900/50 to-blue-900/50 p-6 rounded-lg border border-cyan-700">
+            <h3 className="text-xl font-semibold text-cyan-300 mb-4">📝 Sintassi Base</h3>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                CREATE TABLE nome_tabella (<br/>
+                &nbsp;&nbsp;colonna1 TIPO VINCOLI,<br/>
+                &nbsp;&nbsp;colonna2 TIPO VINCOLI,<br/>
+                &nbsp;&nbsp;...<br/>
+                );
+              </code>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 p-6 rounded-lg border border-green-700">
+            <h3 className="text-xl font-semibold text-green-300 mb-4">🔧 Tipi di Dati SQLite</h3>
+            <div className="space-y-2 text-gray-300 text-sm">
+              <div><code className="text-blue-400">INTEGER</code> - Numeri interi</div>
+              <div><code className="text-purple-400">REAL</code> - Numeri decimali</div>
+              <div><code className="text-green-400">TEXT</code> - Stringhe di testo</div>
+              <div><code className="text-yellow-400">BLOB</code> - Dati binari</div>
+              <div><code className="text-red-400">NULL</code> - Valore nullo</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-br from-orange-900/50 to-red-900/50 p-6 rounded-lg border border-orange-700">
+          <h3 className="text-xl font-semibold text-orange-300 mb-4">🎯 Esempio Completo</h3>
+          <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+            <code className="text-green-400 text-sm">
+              CREATE TABLE libri (<br/>
+              &nbsp;&nbsp;id INTEGER PRIMARY KEY AUTOINCREMENT,<br/>
+              &nbsp;&nbsp;titolo TEXT NOT NULL,<br/>
+              &nbsp;&nbsp;autore TEXT NOT NULL,<br/>
+              &nbsp;&nbsp;isbn TEXT UNIQUE,<br/>
+              &nbsp;&nbsp;anno_pubblicazione INTEGER CHECK(anno_pubblicazione &gt; 1000),<br/>
+              &nbsp;&nbsp;genere TEXT DEFAULT 'Generale',<br/>
+              &nbsp;&nbsp;disponibile INTEGER DEFAULT 1<br/>
+              );
+            </code>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 11 - INSERT
+  {
+    id: 11,
+    title: "INSERT - Inserire Dati",
+    category: "sql",
+    content: (
+      <div className="space-y-6">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-cyan-300 mb-4">Inserimento Dati</h2>
+          <p className="text-gray-400">Popolare le tabelle con i nostri dati</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-blue-900/50 to-indigo-900/50 p-6 rounded-lg border border-blue-700">
+            <h3 className="text-xl font-semibold text-blue-300 mb-4">📝 Inserimento Singolo</h3>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                INSERT INTO libri (<br/>
+                &nbsp;&nbsp;titolo, autore, anno_pubblicazione<br/>
+                ) VALUES (<br/>
+                &nbsp;&nbsp;'1984', 'George Orwell', 1949<br/>
+                );
+              </code>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-purple-900/50 to-pink-900/50 p-6 rounded-lg border border-purple-700">
+            <h3 className="text-xl font-semibold text-purple-300 mb-4">📚 Inserimento Multiplo</h3>
+            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+              <code className="text-green-400 text-sm">
+                INSERT INTO libri VALUES<br/>
+                &nbsp;&nbsp;(1, 'Il Signore degli Anelli', 'Tolkien', '1234567890', 1954, 'Fantasy', 1),<br/>
+                &nbsp;&nbsp;(2, 'Harry Potter', 'Rowling', '0987654321', 1997, 'Fantasy', 1);
+              </code>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-br from-green-900/50 to-teal-900/50 p-6 rounded-lg border border-green-700">
+          <h3 className="text-xl font-semibold text-green-300 mb-4">🚀 Popoliamo la Biblioteca</h3>
+          <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+            <code className="text-green-400 text-sm">
+              -- Aggiungiamo alcuni utenti<br/>
+              INSERT INTO utenti (nome, cognome, email) VALUES<br/>
+              &nbsp;&nbsp;('Mario', 'Rossi', 'mario.rossi@email.com'),<br/>
+              &nbsp;&nbsp;('Anna', 'Verdi', 'anna.verdi@email.com'),<br/>
+              &nbsp;&nbsp;('Luca', 'Bianchi', 'luca.bianchi@email.com');<br/><br/>
+
+              -- E ora un prestito<br/>
+              INSERT INTO prestiti (libro_id, utente_id, data_prestito)<br/>
+              VALUES (1, 1, '2024-01-15');
+            </code>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 12 - SELECT Base
+  {
+    id: 12,
+    title: "SELECT - Interrogare i Dati",
+    category: "sql",
+    content: (
+      <div className="space-y-6">
+        <div className="text-center">
+          <Search size={64} className="text-cyan-400 mb-4 mx-auto" />
+          <h2 className="text-3xl font-bold text-cyan-300 mb-4">Query di Base</h2>
+          <p className="text-gray-400">Il comando più importante: recuperare informazioni</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-cyan-900/50 to-blue-900/50 p-6 rounded-lg border border-cyan-700">
+            <h3 className="text-xl font-semibold text-cyan-300 mb-4">🔍 SELECT Semplice</h3>
+            <div className="space-y-3">
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">SELECT * FROM libri;</code>
+                <div className="text-gray-400 text-xs mt-1">Tutti i campi, tutte le righe</div>
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">SELECT titolo, autore FROM libri;</code>
+                <div className="text-gray-400 text-xs mt-1">Solo campi specifici</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-purple-900/50 to-indigo-900/50 p-6 rounded-lg border border-purple-700">
+            <h3 className="text-xl font-semibold text-purple-300 mb-4">🎯 WHERE - Filtrare</h3>
+            <div className="space-y-3">
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">SELECT * FROM libri<br/>WHERE anno_pubblicazione &gt; 2000;</code>
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">SELECT * FROM libri<br/>WHERE autore = 'Tolkien';</code>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 p-6 rounded-lg border border-green-700">
+          <h3 className="text-xl font-semibold text-green-300 mb-4">🔧 Operatori Utili</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-300">
+            <div>
+              <strong className="text-blue-400">=</strong> uguale<br/>
+              <strong className="text-blue-400">!=</strong> diverso<br/>
+              <strong className="text-blue-400">&lt;</strong> minore<br/>
+              <strong className="text-blue-400">&gt;</strong> maggiore
+            </div>
+            <div>
+              <strong className="text-green-400">LIKE</strong> simile<br/>
+              <strong className="text-green-400">IN</strong> nell'elenco<br/>
+              <strong className="text-green-400">BETWEEN</strong> tra valori<br/>
+              <strong className="text-green-400">IS NULL</strong> è nullo
+            </div>
+            <div>
+              <strong className="text-purple-400">AND</strong> e<br/>
+              <strong className="text-purple-400">OR</strong> oppure<br/>
+              <strong className="text-purple-400">NOT</strong> non<br/>
+            </div>
+            <div>
+              <strong className="text-orange-400">%</strong> qualsiasi testo<br/>
+              <strong className="text-orange-400">_</strong> un carattere<br/>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 13 - UPDATE e DELETE
+  {
+    id: 13,
+    title: "UPDATE e DELETE - Modificare e Cancellare",
+    category: "sql",
+    content: (
+      <div className="space-y-6">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-red-300 mb-4">Modificare e Rimuovere Dati</h2>
+          <p className="text-gray-400">Operazioni potenti che richiedono attenzione</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-blue-900/50 to-cyan-900/50 p-6 rounded-lg border border-blue-700">
+            <h3 className="text-xl font-semibold text-blue-300 mb-4">✏️ UPDATE - Modificare</h3>
+            <div className="space-y-4">
+              <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">
+                  UPDATE libri<br/>
+                  SET disponibile = 0<br/>
+                  WHERE id = 1;
+                </code>
+                <div className="text-gray-400 text-xs mt-2">Marca un libro come non disponibile</div>
+              </div>
+              <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">
+                  UPDATE utenti<br/>
+                  SET email = 'nuova@email.com'<br/>
+                  WHERE nome = 'Mario' AND cognome = 'Rossi';
+                </code>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-red-900/50 to-pink-900/50 p-6 rounded-lg border border-red-700">
+            <h3 className="text-xl font-semibold text-red-300 mb-4">🗑️ DELETE - Cancellare</h3>
+            <div className="space-y-4">
+              <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">
+                  DELETE FROM prestiti<br/>
+                  WHERE restituito = 1<br/>
+                  AND data_restituzione &lt; '2023-01-01';
+                </code>
+                <div className="text-gray-400 text-xs mt-2">Rimuove prestiti vecchi</div>
+              </div>
+              <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">
+                  DELETE FROM utenti<br/>
+                  WHERE attivo = 0;
+                </code>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-br from-yellow-900/50 to-orange-900/50 p-6 rounded-lg border border-yellow-700">
+          <h3 className="text-xl font-semibold text-yellow-300 mb-4 flex items-center">
+            <AlertCircle className="mr-2" size={24} />
+            ⚠️ ATTENZIONE!
+          </h3>
+          <div className="space-y-3 text-gray-300">
+            <div className="bg-red-900/30 p-3 rounded">
+              <strong className="text-red-400">SEMPRE usare WHERE:</strong> Senza WHERE modifichi/cancelli TUTTO!
+            </div>
+            <div className="bg-blue-900/30 p-3 rounded">
+              <strong className="text-blue-400">Test prima:</strong> Usa SELECT per verificare cosa stai per modificare
+            </div>
+            <div className="bg-green-900/30 p-3 rounded">
+              <strong className="text-green-400">Backup:</strong> Fai sempre backup prima di operazioni massive
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+];
