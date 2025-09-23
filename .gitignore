@@ -94,3 +94,6 @@ Thumbs.db
 
 # Project documentation (local only)
 CONTEXT.md
+
+# TypeScript build info
+*.tsbuildinfo

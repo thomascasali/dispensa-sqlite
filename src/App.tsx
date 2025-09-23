@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Dashboard from './components/Dashboard.jsx';
 import SlideViewer from './components/SlideViewer.jsx';
 
@@ -15,7 +15,7 @@ function App() {
     setCurrentView('dashboard');
   };
 
-  const handleGoToSlide = (slideIndex) => {
+  const handleGoToSlide = (slideIndex: number) => {
     setStartSlide(slideIndex);
     setCurrentView('presentation');
   };
