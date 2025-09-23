@@ -29,3 +29,6 @@ export const slideCategories = {
 export const getTotalSlides = () => slides.length;
 export const getSlidesByCategory = (category) => slides.filter(slide => slide.category === category);
 export const getSlideById = (id) => slides.find(slide => slide.id === id);
+
+// Funzione helper per ottenere la posizione corretta di una slide nell'array ordinato
+export const getSlidePosition = (slideId) => slides.findIndex(slide => slide.id === slideId);

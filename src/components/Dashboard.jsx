@@ -1,6 +1,6 @@
 import React from 'react';
 import { Play, Book, BarChart3, Settings, Database, Code, BookOpen, Server, Zap, User, Users } from 'lucide-react';
-import { slides, slideCategories, getTotalSlides, getSlidesByCategory } from '../data/slides.jsx';
+import { slides, slideCategories, getTotalSlides, getSlidesByCategory, getSlidePosition } from '../data/slides.jsx';
 
 const Dashboard = ({ onStartPresentation, onGoToSlide }) => {
   const totalSlides = getTotalSlides();
@@ -161,7 +161,7 @@ const Dashboard = ({ onStartPresentation, onGoToSlide }) => {
                       {categorySlides.map((slide) => (
                         <button
                           key={slide.id}
-                          onClick={() => onGoToSlide(slide.id - 1)}
+                          onClick={() => onGoToSlide(getSlidePosition(slide.id))}
                           className="text-left p-4 rounded-xl bg-gray-800/50 border border-gray-600 hover:border-blue-500 hover:bg-gray-700/50 transition-all duration-300 group transform hover:scale-102"
                         >
                           <div className="flex items-center justify-between">
@@ -225,21 +225,21 @@ const Dashboard = ({ onStartPresentation, onGoToSlide }) => {
                   <Play size={20} className="text-blue-400 group-hover:animate-pulse" />
                 </button>
                 <button
-                  onClick={() => onGoToSlide(12)} // Vai al progetto studenti-classi (slide 13)
+                  onClick={() => onGoToSlide(getSlidePosition(13))} // Vai al progetto studenti-classi (slide 13)
                   className="w-full flex items-center justify-between p-4 bg-gray-800/50 border border-gray-600 rounded-lg hover:bg-gray-700/50 hover:border-orange-500 transition-all duration-300 group"
                 >
                   <span className="font-medium text-white group-hover:text-orange-300">Progetto Studenti-Classi</span>
                   <Users size={20} className="text-orange-400 group-hover:animate-pulse" />
                 </button>
                 <button
-                  onClick={() => onGoToSlide(29)} // Vai al progetto biblioteca (slide 30)
+                  onClick={() => onGoToSlide(getSlidePosition(30))} // Vai al progetto biblioteca (slide 30)
                   className="w-full flex items-center justify-between p-4 bg-gray-800/50 border border-gray-600 rounded-lg hover:bg-gray-700/50 hover:border-green-500 transition-all duration-300 group"
                 >
                   <span className="font-medium text-white group-hover:text-green-300">Progetto Biblioteca</span>
                   <BookOpen size={20} className="text-green-400 group-hover:animate-pulse" />
                 </button>
                 <button
-                  onClick={() => onGoToSlide(45)} // Vai alle congratulazioni (slide 46)
+                  onClick={() => onGoToSlide(getSlidePosition(46))} // Vai alle congratulazioni (slide 46)
                   className="w-full flex items-center justify-between p-4 bg-gray-800/50 border border-gray-600 rounded-lg hover:bg-gray-700/50 hover:border-purple-500 transition-all duration-300 group"
                 >
                   <span className="font-medium text-white group-hover:text-purple-300">Congratulazioni</span>
