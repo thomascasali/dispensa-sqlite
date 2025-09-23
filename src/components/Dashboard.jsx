@@ -206,8 +206,8 @@ const Dashboard = ({ onStartPresentation, onGoToSlide }) => {
                     <div className="text-xs text-gray-400">Slide Totali</div>
                   </div>
                   <div className="bg-green-900/50 p-4 rounded-lg">
-                    <div className="text-2xl font-bold text-green-400">6</div>
-                    <div className="text-xs text-gray-400">Sezioni</div>
+                    <div className="text-2xl font-bold text-green-400">{Object.keys(slideCategories).length}</div>
+                    <div className="text-xs text-gray-400">Categorie</div>
                   </div>
                 </div>
               </div>
@@ -215,7 +215,7 @@ const Dashboard = ({ onStartPresentation, onGoToSlide }) => {
 
             {/* Quick Actions */}
             <div className="bg-gradient-to-br from-blue-900/60 to-cyan-900/60 backdrop-blur-lg rounded-xl border border-blue-700 p-6 shadow-xl">
-              <h3 className="text-xl font-semibold text-white mb-6">🚀 Accesso Rapido</h3>
+              <h3 className="text-xl font-semibold text-white mb-6">🚀 Navigazione Rapida</h3>
               <div className="space-y-4">
                 <button
                   onClick={() => onStartPresentation(0)}
@@ -225,11 +225,25 @@ const Dashboard = ({ onStartPresentation, onGoToSlide }) => {
                   <Play size={20} className="text-blue-400 group-hover:animate-pulse" />
                 </button>
                 <button
-                  onClick={() => onGoToSlide(7)} // Vai alla prima slide pratica
+                  onClick={() => onGoToSlide(12)} // Vai al progetto studenti-classi (slide 13)
                   className="w-full flex items-center justify-between p-4 bg-gray-800/50 border border-gray-600 rounded-lg hover:bg-gray-700/50 hover:border-orange-500 transition-all duration-300 group"
                 >
-                  <span className="font-medium text-white group-hover:text-orange-300">Vai alla pratica</span>
-                  <Settings size={20} className="text-orange-400 group-hover:animate-pulse" />
+                  <span className="font-medium text-white group-hover:text-orange-300">Progetto Studenti-Classi</span>
+                  <Users size={20} className="text-orange-400 group-hover:animate-pulse" />
+                </button>
+                <button
+                  onClick={() => onGoToSlide(29)} // Vai al progetto biblioteca (slide 30)
+                  className="w-full flex items-center justify-between p-4 bg-gray-800/50 border border-gray-600 rounded-lg hover:bg-gray-700/50 hover:border-green-500 transition-all duration-300 group"
+                >
+                  <span className="font-medium text-white group-hover:text-green-300">Progetto Biblioteca</span>
+                  <BookOpen size={20} className="text-green-400 group-hover:animate-pulse" />
+                </button>
+                <button
+                  onClick={() => onGoToSlide(45)} // Vai alle congratulazioni (slide 46)
+                  className="w-full flex items-center justify-between p-4 bg-gray-800/50 border border-gray-600 rounded-lg hover:bg-gray-700/50 hover:border-purple-500 transition-all duration-300 group"
+                >
+                  <span className="font-medium text-white group-hover:text-purple-300">Congratulazioni</span>
+                  <BarChart3 size={20} className="text-purple-400 group-hover:animate-pulse" />
                 </button>
               </div>
             </div>
@@ -240,11 +254,11 @@ const Dashboard = ({ onStartPresentation, onGoToSlide }) => {
               <div className="space-y-4 text-sm">
                 <div className="flex justify-between items-center">
                   <span className="text-gray-400">Durata stimata:</span>
-                  <span className="font-medium text-white">2-3 ore</span>
+                  <span className="font-medium text-white">3-4 ore</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-gray-400">Livello:</span>
-                  <span className="font-medium text-blue-400">Principiante</span>
+                  <span className="font-medium text-blue-400">Base → Avanzato</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-gray-400">Prerequisiti:</span>
@@ -260,15 +274,49 @@ const Dashboard = ({ onStartPresentation, onGoToSlide }) => {
             {/* Learning Path */}
             <div className="bg-gradient-to-br from-purple-900/60 to-pink-900/60 backdrop-blur-lg rounded-xl border border-purple-700 p-6 shadow-xl">
               <h3 className="text-xl font-semibold text-white mb-6">🎯 Percorso di Apprendimento</h3>
-              <div className="space-y-3">
-                {Object.entries(slideCategories).map(([key, category], index) => (
-                  <div key={key} className="flex items-center space-x-3">
-                    <div className={`w-8 h-8 rounded-full bg-gradient-to-r ${getCategoryGradient(key)} flex items-center justify-center text-white font-bold text-sm`}>
-                      {index + 1}
-                    </div>
-                    <span className="text-gray-300 text-sm">{category.name}</span>
+              <div className="space-y-4 text-sm">
+                <div className="flex items-center space-x-3">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-600 to-blue-500 flex items-center justify-center text-white font-bold text-sm">1</div>
+                  <div>
+                    <div className="text-white font-medium">Introduzione</div>
+                    <div className="text-gray-400 text-xs">Slide 1-2: Benvenuto e roadmap</div>
                   </div>
-                ))}
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-600 to-purple-500 flex items-center justify-center text-white font-bold text-sm">2</div>
+                  <div>
+                    <div className="text-white font-medium">Teoria Database</div>
+                    <div className="text-gray-400 text-xs">Slide 3-4: Concetti fondamentali</div>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-r from-green-600 to-green-500 flex items-center justify-center text-white font-bold text-sm">3</div>
+                  <div>
+                    <div className="text-white font-medium">SQLite Basics</div>
+                    <div className="text-gray-400 text-xs">Slide 5-12: Setup, tipi, comandi</div>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-r from-orange-600 to-orange-500 flex items-center justify-center text-white font-bold text-sm">4</div>
+                  <div>
+                    <div className="text-white font-medium">Progetti Pratici</div>
+                    <div className="text-gray-400 text-xs">Slide 13+: Studenti, biblioteca</div>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-r from-red-600 to-red-500 flex items-center justify-center text-white font-bold text-sm">5</div>
+                  <div>
+                    <div className="text-white font-medium">Query Avanzate</div>
+                    <div className="text-gray-400 text-xs">JOIN, subquery, performance</div>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-600 to-pink-500 flex items-center justify-center text-white font-bold text-sm">6</div>
+                  <div>
+                    <div className="text-white font-medium">Conclusione</div>
+                    <div className="text-gray-400 text-xs">Slide 46: Congratulazioni!</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
