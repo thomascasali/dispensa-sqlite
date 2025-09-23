@@ -91,3 +91,6 @@ temp/
 
 # OS generated files
 Thumbs.db
+
+# Project documentation (local only)
+CONTEXT.md
