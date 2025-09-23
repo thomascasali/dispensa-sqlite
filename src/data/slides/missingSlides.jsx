@@ -2,9 +2,9 @@ import React from 'react';
 import { Users, Table, BarChart3, Database } from 'lucide-react';
 
 export const missingSlides = [
-  // Slide 25 - Riepilogo Comandi SQL Fondamentali
+  // Slide 24 - Riepilogo Comandi SQL Fondamentali
   {
-    id: 25,
+    id: 24,
     title: "Riepilogo: I Comandi SQL Fondamentali",
     category: "practice",
     content: (
@@ -308,9 +308,9 @@ export const missingSlides = [
     )
   },
 
-  // Slide 40 - Window Functions
+  // Slide 34 - Window Functions
   {
-    id: 40,
+    id: 34,
     title: "Window Functions - Funzioni Finestra",
     category: "advanced",
     content: (
@@ -389,9 +389,9 @@ export const missingSlides = [
     )
   },
 
-  // Slide 24 - CASE WHEN - Logica Condizionale
+  // Slide 35 - CASE WHEN - Logica Condizionale
   {
-    id: 24,
+    id: 35,
     title: "CASE WHEN - Logica Condizionale",
     category: "advanced",
     content: (
@@ -451,9 +451,9 @@ export const missingSlides = [
     )
   },
 
-  // Slide 26 - Date e Time Functions
+  // Slide 25 - CTE - Common Table Expressions
   {
-    id: 26,
+    id: 25,
     title: "CTE - Common Table Expressions",
     category: "advanced",
     content: (
@@ -532,9 +532,9 @@ export const missingSlides = [
     )
   },
 
-  // Slide 27 - String Functions
+  // Slide 26 - Funzioni Data e Ora
   {
-    id: 27,
+    id: 26,
     title: "Funzioni Data e Ora",
     category: "sql",
     content: (
@@ -630,9 +630,9 @@ export const missingSlides = [
     )
   },
 
-  // Slide 28 - JOIN in biblioteca
+  // Slide 27 - Funzioni per Stringhe
   {
-    id: 28,
+    id: 27,
     title: "Funzioni per Stringhe",
     category: "sql",
     content: (
@@ -726,9 +726,9 @@ export const missingSlides = [
     )
   },
 
-  // Slide 29 - Subquery biblioteca
+  // Slide 28 - PRAGMA - Comandi di Configurazione
   {
-    id: 29,
+    id: 28,
     title: "PRAGMA - Comandi di Configurazione",
     category: "sqlite",
     content: (
@@ -814,9 +814,9 @@ export const missingSlides = [
     )
   },
 
-  // Slide 30 - Importare ed Esportare Dati
+  // Slide 29 - Importare ed Esportare Dati
   {
-    id: 45,
+    id: 29,
     title: "Importare ed Esportare Dati",
     category: "sqlite",
     content: (
@@ -910,6 +910,68 @@ export const missingSlides = [
               .output stdout<br/>
               .mode table
             </code>
+          </div>
+        </div>
+      </div>
+    )
+  },
+
+  // Slide 45 - Futuro Sviluppo
+  {
+    id: 45,
+    title: "Futuro dello Sviluppo Database",
+    category: "advanced",
+    content: (
+      <div className="space-y-6">
+        <div className="text-center">
+          <Database size={64} className="text-blue-400 mb-4 mx-auto" />
+          <h2 className="text-3xl font-bold text-blue-300 mb-4">Verso il Futuro</h2>
+          <p className="text-gray-400">Tendenze e tecnologie emergenti nel mondo dei database</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-blue-900/50 to-blue-800/50 p-6 rounded-lg border border-blue-700">
+            <h3 className="text-xl font-semibold text-blue-300 mb-4">🚀 Tecnologie Emergenti</h3>
+            <ul className="space-y-2 text-gray-300 text-sm">
+              <li>• Database Graph (Neo4j, ArangoDB)</li>
+              <li>• Time-series databases (InfluxDB)</li>
+              <li>• Blockchain databases</li>
+              <li>• AI/ML Database integration</li>
+              <li>• Edge Computing databases</li>
+            </ul>
+          </div>
+
+          <div className="bg-gradient-to-br from-green-900/50 to-green-800/50 p-6 rounded-lg border border-green-700">
+            <h3 className="text-xl font-semibold text-green-300 mb-4">☁️ Cloud & Serverless</h3>
+            <ul className="space-y-2 text-gray-300 text-sm">
+              <li>• Database-as-a-Service (DaaS)</li>
+              <li>• Serverless SQL (AWS Aurora)</li>
+              <li>• Multi-cloud strategies</li>
+              <li>• Auto-scaling databases</li>
+              <li>• Pay-per-query models</li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-r from-purple-900/50 to-indigo-900/50 p-6 rounded-lg border border-purple-700">
+          <h3 className="text-xl font-semibold text-purple-300 mb-4">🎯 Il Tuo Percorso</h3>
+          <p className="text-gray-300 mb-4">
+            Hai imparato SQLite, ma il viaggio è appena iniziato. I concetti che hai appreso sono universali
+            e ti prepareranno per qualsiasi tecnologia database futura.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+            <div className="bg-gray-900/30 p-3 rounded">
+              <strong className="text-blue-400">Continua a praticare:</strong>
+              <div className="text-gray-400 mt-1">Crea progetti personali, sperimenta con dati reali</div>
+            </div>
+            <div className="bg-gray-900/30 p-3 rounded">
+              <strong className="text-green-400">Esplora nuove tecnologie:</strong>
+              <div className="text-gray-400 mt-1">PostgreSQL, MongoDB, Redis per casi d'uso diversi</div>
+            </div>
+            <div className="bg-gray-900/30 p-3 rounded">
+              <strong className="text-purple-400">Specializzati:</strong>
+              <div className="text-gray-400 mt-1">Data Science, DevOps, Architecture secondo i tuoi interessi</div>
+            </div>
           </div>
         </div>
       </div>

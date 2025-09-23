@@ -605,5 +605,89 @@ export const advancedSlides = [
         </div>
       </div>
     )
+  },
+
+  // Slide 40 - Performance e Ottimizzazione
+  {
+    id: 40,
+    title: "Performance e Ottimizzazione Avanzata",
+    category: "advanced",
+    content: (
+      <div className="space-y-6">
+        <div className="text-center">
+          <Zap size={64} className="text-red-400 mb-4 mx-auto" />
+          <h2 className="text-3xl font-bold text-red-300 mb-4">Massimizzare le Performance</h2>
+          <p className="text-gray-400">Tecniche avanzate per database ad alte prestazioni</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-blue-900/50 to-cyan-900/50 p-6 rounded-lg border border-blue-700">
+            <h3 className="text-xl font-semibold text-blue-300 mb-4">📊 Analisi Query</h3>
+            <div className="space-y-3">
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">
+                  EXPLAIN QUERY PLAN<br/>
+                  SELECT * FROM libri WHERE autore = 'Tolkien';
+                </code>
+              </div>
+              <div className="bg-gray-900/50 p-3 rounded border border-gray-700">
+                <code className="text-green-400 text-sm">
+                  PRAGMA optimize;<br/>
+                  ANALYZE;
+                </code>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 p-6 rounded-lg border border-green-700">
+            <h3 className="text-xl font-semibold text-green-300 mb-4">🎯 Strategie di Ottimizzazione</h3>
+            <ul className="space-y-2 text-gray-300 text-sm">
+              <li>• Indici strategici su colonne WHERE</li>
+              <li>• Normalizzazione vs Denormalizzazione</li>
+              <li>• Partitioning per grandi dataset</li>
+              <li>• Cache query e prepared statements</li>
+              <li>• Connection pooling</li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-br from-purple-900/50 to-indigo-900/50 p-6 rounded-lg border border-purple-700">
+          <h3 className="text-xl font-semibold text-purple-300 mb-4">🏎️ Configurazioni Performance</h3>
+          <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
+            <code className="text-green-400 text-sm">
+              PRAGMA synchronous = NORMAL;<br/>
+              PRAGMA cache_size = 10000;<br/>
+              PRAGMA temp_store = memory;<br/>
+              PRAGMA journal_mode = WAL;<br/>
+              PRAGMA optimize;
+            </code>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-r from-orange-900/50 to-red-900/50 p-6 rounded-lg border border-orange-700">
+          <h3 className="text-xl font-semibold text-orange-300 mb-4">⚡ Monitoring e Debugging</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-300">
+            <div>
+              <strong className="text-blue-400">Metriche chiave:</strong>
+              <ul className="list-disc list-inside mt-1 space-y-1">
+                <li>Query execution time</li>
+                <li>Index usage statistics</li>
+                <li>Memory consumption</li>
+                <li>Disk I/O patterns</li>
+              </ul>
+            </div>
+            <div>
+              <strong className="text-green-400">Tools utili:</strong>
+              <ul className="list-disc list-inside mt-1 space-y-1">
+                <li>EXPLAIN QUERY PLAN</li>
+                <li>SQLite Analyzer</li>
+                <li>Performance profilers</li>
+                <li>Custom logging</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
   }
 ];

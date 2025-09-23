@@ -229,10 +229,10 @@ export const sqlSlides = [
     )
   },
 
-  // Slide 11 - Relazioni e Chiavi Esterne
+  // Slide 15 - SELECT - Interrogare i Dati
   {
-    id: 11,
-    title: "Relazioni tra Tabelle - Chiavi Esterne",
+    id: 15,
+    title: "SELECT - Interrogare i Dati",
     category: "sql",
     content: (
       <div className="space-y-6">
@@ -339,120 +339,11 @@ export const sqlSlides = [
     )
   },
 
-  // Slide 12 - Progetto Studenti-Classi
-  {
-    id: 13,
-    title: "Progetto Completo: Sistema Studenti-Classi",
-    category: "practice",
-    content: (
-      <div className="space-y-6">
-        <div className="text-center">
-          <Users size={64} className="text-orange-400 mb-4 mx-auto" />
-          <h2 className="text-3xl font-bold text-orange-300 mb-4">Sistema Gestione Scolastica</h2>
-          <p className="text-gray-400">Il nostro primo progetto completo per consolidare CREATE TABLE e relazioni</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-gradient-to-br from-blue-900/50 to-blue-800/50 p-6 rounded-lg border border-blue-700">
-            <h3 className="text-xl font-semibold text-blue-300 mb-4 flex items-center">
-              <Users className="mr-2" size={20} />
-              🏫 Tabella Classi
-            </h3>
-            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
-              <code className="text-green-400 text-sm">
-                CREATE TABLE classi (<br/>
-                &nbsp;&nbsp;id_classe INTEGER PRIMARY KEY AUTOINCREMENT,<br/>
-                &nbsp;&nbsp;sigla TEXT NOT NULL UNIQUE,<br/>
-                &nbsp;&nbsp;indirizzo TEXT NOT NULL<br/>
-                );
-              </code>
-            </div>
-            <div className="mt-3 text-xs text-gray-400">
-              <strong>UNIQUE:</strong> Ogni sigla è univoca (es: "3H", "4G")
-            </div>
-          </div>
-
-          <div className="bg-gradient-to-br from-green-900/50 to-green-800/50 p-6 rounded-lg border border-green-700">
-            <h3 className="text-xl font-semibold text-green-300 mb-4 flex items-center">
-              <User className="mr-2" size={20} />
-              🎓 Tabella Studenti
-            </h3>
-            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
-              <code className="text-green-400 text-sm">
-                CREATE TABLE studenti (<br/>
-                &nbsp;&nbsp;id_studente INTEGER PRIMARY KEY AUTOINCREMENT,<br/>
-                &nbsp;&nbsp;nome TEXT NOT NULL,<br/>
-                &nbsp;&nbsp;cognome TEXT NOT NULL,<br/>
-                &nbsp;&nbsp;data_nascita TEXT,<br/>
-                &nbsp;&nbsp;media_voti REAL DEFAULT 0.0,<br/>
-                &nbsp;&nbsp;id_classe INTEGER NOT NULL,<br/>
-                &nbsp;&nbsp;FOREIGN KEY (id_classe) REFERENCES classi(id_classe)<br/>
-                );
-              </code>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-gradient-to-br from-purple-900/50 to-indigo-900/50 p-6 rounded-lg border border-purple-700">
-          <h3 className="text-xl font-semibold text-purple-300 mb-4">📊 Schema Relazionale</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-gray-900/30 p-4 rounded text-center">
-              <div className="text-blue-400 font-semibold mb-2">📋 Classi</div>
-              <div className="text-xs text-gray-300 space-y-1">
-                <div><code>id_classe</code> (PK)</div>
-                <div><code>sigla</code></div>
-                <div><code>indirizzo</code></div>
-              </div>
-            </div>
-            <div className="flex items-center justify-center">
-              <div className="text-purple-300 text-3xl">→</div>
-            </div>
-            <div className="bg-gray-900/30 p-4 rounded text-center">
-              <div className="text-green-400 font-semibold mb-2">👥 Studenti</div>
-              <div className="text-xs text-gray-300 space-y-1">
-                <div><code>id_studente</code> (PK)</div>
-                <div><code>nome, cognome</code></div>
-                <div><code>data_nascita</code></div>
-                <div><code>media_voti</code></div>
-                <div><code>id_classe</code> (FK)</div>
-              </div>
-            </div>
-          </div>
-          <div className="text-center mt-4 text-sm text-purple-200">
-            <strong>Relazione 1:N</strong> - Una classe può avere molti studenti
-          </div>
-        </div>
-
-        <div className="bg-gradient-to-r from-orange-900/50 to-red-900/50 p-6 rounded-lg border border-orange-700">
-          <h3 className="text-xl font-semibold text-orange-300 mb-4">💡 Vantaggi di questo Schema</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <h4 className="text-orange-200 font-semibold mb-2">✅ Efficienza:</h4>
-              <ul className="text-sm text-gray-300 space-y-1">
-                <li>• Dati classe memorizzati una sola volta</li>
-                <li>• Cambio indirizzo = 1 aggiornamento</li>
-                <li>• Spazio di archiviazione ottimizzato</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-orange-200 font-semibold mb-2">🛡️ Integrità:</h4>
-              <ul className="text-sm text-gray-300 space-y-1">
-                <li>• Impossibile assegnare classe inesistente</li>
-                <li>• Coerenza garantita dal DBMS</li>
-                <li>• Errori di digitazione prevenuti</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  },
-
-  // Slide 13 - Esercizi Pratici Studenti-Classi
+  // Slide 14 - INSERT - Inserimento Dati
   {
     id: 14,
-    title: "Esercizi Pratici: Popoliamo il Database Scuola",
-    category: "practice",
+    title: "INSERT - Inserire Dati",
+    category: "sql",
     content: (
       <div className="space-y-6">
         <div className="text-center">
@@ -543,68 +434,10 @@ export const sqlSlides = [
     )
   },
 
-  // Slide 15 - INSERT
-  {
-    id: 15,
-    title: "INSERT - Inserire Dati",
-    category: "sql",
-    content: (
-      <div className="space-y-6">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold text-cyan-300 mb-4">Inserimento Dati</h2>
-          <p className="text-gray-400">Popolare le tabelle con i nostri dati</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-gradient-to-br from-blue-900/50 to-indigo-900/50 p-6 rounded-lg border border-blue-700">
-            <h3 className="text-xl font-semibold text-blue-300 mb-4">📝 Inserimento Singolo</h3>
-            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
-              <code className="text-green-400 text-sm">
-                INSERT INTO studenti (<br/>
-                &nbsp;&nbsp;nome, cognome, id_classe<br/>
-                ) VALUES (<br/>
-                &nbsp;&nbsp;'Mario', 'Rossi', 1<br/>
-                );
-              </code>
-            </div>
-          </div>
-
-          <div className="bg-gradient-to-br from-purple-900/50 to-pink-900/50 p-6 rounded-lg border border-purple-700">
-            <h3 className="text-xl font-semibold text-purple-300 mb-4">📚 Inserimento Multiplo</h3>
-            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
-              <code className="text-green-400 text-sm">
-                INSERT INTO studenti (nome, cognome, id_classe, data_nascita) VALUES<br/>
-                &nbsp;&nbsp;('Marco', 'Calbucco', 2, '2001-12-05'),<br/>
-                &nbsp;&nbsp;('Luca', 'Calesini', 2, '2001-11-06');
-              </code>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-gradient-to-br from-green-900/50 to-teal-900/50 p-6 rounded-lg border border-green-700">
-          <h3 className="text-xl font-semibold text-green-300 mb-4">🚀 Popoliamo le Classi</h3>
-          <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
-            <code className="text-green-400 text-sm">
-              -- Prima creiamo le classi<br/>
-              INSERT INTO classi (sigla, indirizzo) VALUES<br/>
-              &nbsp;&nbsp;('3H', 'Informatica'),<br/>
-              &nbsp;&nbsp;('4H', 'Informatica'),<br/>
-              &nbsp;&nbsp;('5H', 'Informatica');<br/><br/>
-
-              -- Poi aggiungiamo gli studenti<br/>
-              INSERT INTO studenti (nome, cognome, id_classe, data_nascita)<br/>
-              VALUES ('Matteo', 'Angino', 1, '2001-12-05');
-            </code>
-          </div>
-        </div>
-      </div>
-    )
-  },
-
-  // Slide 12 - SELECT Base
+  // Slide 16 - UPDATE e DELETE
   {
     id: 16,
-    title: "SELECT - Interrogare i Dati",
+    title: "UPDATE e DELETE - Modificare e Cancellare",
     category: "sql",
     content: (
       <div className="space-y-6">
@@ -672,10 +505,10 @@ export const sqlSlides = [
     )
   },
 
-  // Slide 13 - UPDATE e DELETE
+  // Slide 17 - WHERE e Condizioni
   {
     id: 17,
-    title: "UPDATE e DELETE - Modificare e Cancellare",
+    title: "WHERE e Condizioni",
     category: "sql",
     content: (
       <div className="space-y-6">

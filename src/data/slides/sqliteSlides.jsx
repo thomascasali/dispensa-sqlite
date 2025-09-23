@@ -1,5 +1,5 @@
 import React from 'react';
-import { Database, FileText, Settings, Monitor, Download, ExternalLink } from 'lucide-react';
+import { Database, FileText, Settings, Monitor, Download, ExternalLink, Search } from 'lucide-react';
 
 export const sqliteSlides = [
   // Slide 5 - Introduzione a SQLite
@@ -213,7 +213,7 @@ export const sqliteSlides = [
     )
   },
 
-  // Slide 8 - Tipi di Dati SQLite
+  // Slide 8 - Vincoli e Chiavi
   {
     id: 8,
     title: "Vincoli e Chiavi",
@@ -294,9 +294,9 @@ export const sqliteSlides = [
     )
   },
 
-  // Slide 8 - Tipi di Dati SQLite
+  // Slide 9 - Tipi di Dati SQLite
   {
-    id: 8,
+    id: 9,
     title: "Tipi di Dati in SQLite",
     category: "sqlite",
     content: (
@@ -373,9 +373,9 @@ export const sqliteSlides = [
     )
   },
 
-  // Slide 9 - DDL - Data Definition Language
+  // Slide 10 - DDL - Data Definition Language
   {
-    id: 9,
+    id: 10,
     title: "DDL - Data Definition Language",
     category: "sqlite",
     content: (
@@ -435,9 +435,9 @@ export const sqliteSlides = [
     )
   },
 
-  // Slide 10 - DML vs DQL
+  // Slide 11 - DML vs DQL
   {
-    id: 10,
+    id: 11,
     title: "DML vs DQL",
     category: "sqlite",
     content: (
@@ -499,62 +499,7 @@ export const sqliteSlides = [
     )
   },
 
-  // Slide 11 - DQL - Data Query Language
-  {
-    id: 11,
-    title: "DQL - Data Query Language",
-    category: "sqlite",
-    content: (
-      <div className="space-y-6">
-        <div className="text-center">
-          <Search size={64} className="text-green-400 mb-4 mx-auto" />
-          <h2 className="text-3xl font-bold text-green-300 mb-4">Il Potere di SELECT</h2>
-          <p className="text-gray-400">Tutto quello che puoi fare con una query</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-gradient-to-br from-blue-900/50 to-indigo-900/50 p-6 rounded-lg border border-blue-700">
-            <h3 className="text-xl font-semibold text-blue-300 mb-4">🔍 SELECT Base</h3>
-            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
-              <code className="text-green-400 text-sm">
-                SELECT colonna1, colonna2<br/>
-                FROM tabella<br/>
-                WHERE condizione<br/>
-                ORDER BY colonna1;
-              </code>
-            </div>
-          </div>
-
-          <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 p-6 rounded-lg border border-green-700">
-            <h3 className="text-xl font-semibold text-green-300 mb-4">⭐ SELECT Avanzato</h3>
-            <div className="bg-gray-900/50 p-4 rounded border border-gray-700">
-              <code className="text-green-400 text-sm">
-                SELECT COUNT(*), AVG(anno)<br/>
-                FROM libri<br/>
-                WHERE genere = 'Fantasy'<br/>
-                GROUP BY autore<br/>
-                HAVING COUNT(*) &gt; 2;
-              </code>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-gradient-to-br from-purple-900/50 to-pink-900/50 p-6 rounded-lg border border-purple-700">
-          <h3 className="text-xl font-semibold text-purple-300 mb-4">🛠️ Clausole Principali</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm text-gray-300">
-            <div><strong className="text-blue-400">SELECT</strong> - Cosa selezionare</div>
-            <div><strong className="text-green-400">FROM</strong> - Da quale tabella</div>
-            <div><strong className="text-yellow-400">WHERE</strong> - Condizioni di filtro</div>
-            <div><strong className="text-purple-400">GROUP BY</strong> - Raggruppa risultati</div>
-            <div><strong className="text-red-400">HAVING</strong> - Filtra gruppi</div>
-            <div><strong className="text-cyan-400">ORDER BY</strong> - Ordina risultati</div>
-          </div>
-        </div>
-      </div>
-    )
-  },
-
-  // Slide 12 - Vincoli e Chiavi
+  // Slide 12 - DB Browser for SQLite
   {
     id: 12,
     title: "DB Browser for SQLite - Il Nostro Strumento di Laboratorio",
