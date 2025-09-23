@@ -204,9 +204,8 @@ Questo progetto è specifico per ITTS Rimini, ma feedback e suggerimenti sono be
 **ITTS Rimini**
 *Istituto Tecnico Tecnologico Statale*
 
-- 🎓 Corso: Basi di Dati
-- 👥 Target: Studenti 3° anno Informatica
-- 📅 Anno Accademico: 2024/2025
+- 🎓 Corso: Basi di Dati su SQLite
+- 👥 Target: Studenti del triennio di Informatica
 
 ---
 
@@ -240,7 +239,7 @@ Quando usi o modifichi questo progetto, mantieni l'attribuzione ai creatori orig
 > *"Il miglior modo per imparare è insegnare, il miglior modo per insegnare è creare strumenti che rendano l'apprendimento naturale e coinvolgente."*
 
 **🎓 ITTS Rimini - Dipartimento Informatica**
-*Innovazione Didattica 2024*
+*Innovazione Didattica 2025*
 
 ---
 
