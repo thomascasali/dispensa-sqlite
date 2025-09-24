@@ -144,7 +144,7 @@ export const introSlides = [
           </p>
           <div className="mt-4 text-sm text-blue-300">
             <strong>ITTS Rimini - Corso Basi di Dati</strong><br/>
-            Anno Scolastico 2024/2025
+            Dipartimento di Informatica
           </div>
         </div>
       </div>
